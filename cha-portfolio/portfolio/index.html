@@ -3,17 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f8f2ff" />
+    <meta name="theme-color" content="#080708" />
     <meta
       name="description"
-      content="The portfolio of Maroine Charity De Roy: technology, creative work, writing, and small business ideas."
+      content="Maroine Charity De Roy is a Business Analytics student interested in web design, development, data, and creative work."
     />
     <title>Home | Cha's Portfolio</title>
     <link rel="stylesheet" href="../shared/common.css" />
     <link rel="stylesheet" href="home/home.css" />
     <script src="../shared/common.js" defer></script>
+    <script src="../shared/social-links.js" defer></script>
   </head>
-  <body class="portfolio-theme home-page">
+  <body class="home-page">
     <header class="site-header">
       <div class="nav-shell">
         <a class="brand" href="index.html" aria-label="Cha, home">
@@ -40,59 +41,68 @@
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-sheen" aria-hidden="true"></div>
         <div class="container hero-layout">
           <div class="hero-copy">
-            <p class="eyebrow">A portfolio from Mabini, Batangas</p>
             <h1 class="hero-title" id="hero-title">
-              Hello, I'm <span>Cha</span><span class="hero-star" aria-hidden="true">✦</span>
+              <span class="hero-title-line">Hi, I'm Cha</span>
+              <span class="hero-title-line">
+                I'm <span class="hero-filled">a</span>
+                <span class="hero-outline">Student</span>
+              </span>
             </h1>
             <p class="hero-intro">
-              I'm Maroine Charity De Roy, a BSIT student specializing in Business Analytics at
-              Batangas State University – The National Engineering University, Mabini Campus.
+              I’m Maroine Charity De Roy, a BSIT student specializing in Business Analytics at
+              Batangas State University TNEU – Mabini Campus. I’m interested in web design and
+              development, data, and creative work.
             </p>
-            <p class="hero-supporting">
-              Interested in web design and development, data, and creative work.
-            </p>
-            <div class="actions hero-actions">
-              <a class="button" href="about/about.html">Get to know me <span aria-hidden="true">↗</span></a>
-              <a class="button secondary" href="projects/projects.html">Explore projects</a>
-            </div>
-            <div class="hero-meta" role="group" aria-label="Areas of interest">
-              <span>TECHNOLOGY</span>
-              <span aria-hidden="true">/</span>
-              <span>DESIGN</span>
-              <span aria-hidden="true">/</span>
-              <span>STORIES</span>
-            </div>
-          </div>
 
-          <div class="hero-art" role="group" aria-label="Profile photo placeholder and Y2K-inspired glass display">
-            <div class="orbit orbit-one" aria-hidden="true"></div>
-            <div class="orbit orbit-two" aria-hidden="true"></div>
-            <div class="star-doodle star-doodle-one" aria-hidden="true">✳</div>
-            <div class="star-doodle star-doodle-two" aria-hidden="true">✦</div>
-            <div class="profile-card glass">
-              <!-- Replace with your portrait at assets/images/cha-profile.jpg. -->
-              <img
-                class="profile-photo"
-                src="../assets/images/cha-profile-placeholder.svg"
-                alt="Profile photo placeholder for Maroine Charity De Roy"
-              />
-              <div class="profile-card-caption">
-                <span class="caption-dot" aria-hidden="true"></span>
-                <div>
-                  <strong>Maroine Charity De Roy</strong>
-                  <span>student · design · technology</span>
-                </div>
-                <span class="caption-spark" aria-hidden="true">✧</span>
+            <div class="home-socials" role="group" aria-label="Social media profiles">
+              <!-- Add a real profile URL to data-social-url when available. Empty entries stay inactive. -->
+              <div
+                class="home-social-link"
+                data-social-name="Facebook"
+                data-social-url=""
+                role="img"
+                aria-label="Facebook profile URL not supplied"
+                title="Facebook profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--facebook" aria-hidden="true"></span>
+              </div>
+              <div
+                class="home-social-link"
+                data-social-name="Instagram"
+                data-social-url=""
+                role="img"
+                aria-label="Instagram profile URL not supplied"
+                title="Instagram profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--instagram" aria-hidden="true"></span>
+              </div>
+              <div
+                class="home-social-link"
+                data-social-name="Telegram"
+                data-social-url=""
+                role="img"
+                aria-label="Telegram profile URL not supplied"
+                title="Telegram profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--telegram" aria-hidden="true"></span>
+              </div>
+              <div
+                class="home-social-link"
+                data-social-name="TikTok"
+                data-social-url=""
+                role="img"
+                aria-label="TikTok profile URL not supplied"
+                title="TikTok profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--tiktok" aria-hidden="true"></span>
               </div>
             </div>
-            <div class="floating-label label-top"><span aria-hidden="true">✧</span> curious by nature</div>
-            <div class="floating-label label-bottom"><span aria-hidden="true">◌</span> ideas in progress</div>
-            <div class="orbit-readout glass" aria-hidden="true">
-              <span>DESIGN / 01</span>
-              <span>° 13.75 N · 120.90 E</span>
+
+            <div class="actions hero-actions">
+              <a class="button" href="projects/projects.html">Explore my work</a>
+              <a class="button secondary" href="about/about.html">View about me</a>
             </div>
           </div>
         </div>
