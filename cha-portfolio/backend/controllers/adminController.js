@@ -163,7 +163,7 @@ async function categoryForShop(db, categoryId, shopId) {
 
 async function getOverview(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
     const shop = request.adminShop;
 
     const [ordersResult, productsResult, categoriesResult, promotionsResult] = await Promise.all([
@@ -236,7 +236,7 @@ async function updateOrderStatus(request, response, next) {
     const { status } = request.body || {};
     if (!ORDER_STATUSES.has(status)) throw httpError(400, 'Choose a valid order status.');
 
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
     const { data: currentOrder, error: orderError } = await db
       .from('orders')
       .select('id, fulfillment_method, status')
@@ -271,7 +271,7 @@ async function updateOrderStatus(request, response, next) {
 
 async function createProduct(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
     const body = request.body || {};
     const name = String(body.name || '').trim();
     const description = String(body.description || '').trim();
@@ -310,7 +310,7 @@ async function createProduct(request, response, next) {
 
 async function updateProduct(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
     const body = request.body || {};
     const update = {};
 
@@ -403,7 +403,7 @@ async function validatePromotionTarget(db, body, shopId) {
 
 async function createPromotion(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
     const body = request.body || {};
     const name = String(body.name || '').trim();
     const description = String(body.description || '').trim();
@@ -473,7 +473,7 @@ async function updatePromotion(request, response, next) {
     if (typeof request.body?.isActive !== 'boolean') {
       throw httpError(400, 'Promotion active state must be true or false.');
     }
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
     const { data, error } = await db
       .from('promotions')
       .update({ is_active: request.body.isActive })
@@ -529,7 +529,7 @@ async function updateShopSettings(request, response, next) {
     );
     const paymentMethods = normalizeShopOptions(body.paymentMethods, 'Payment methods', true);
     if (typeof body.isDemo !== 'boolean') throw httpError(400, 'Demo mode must be true or false.');
-    const db = getSupabase();
+    const db = getSupabase(request.adminShop.slug);
 
     if (!body.isDemo) {
       const { count, error: sampleError } = await db

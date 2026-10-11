@@ -9,7 +9,7 @@ const {
   updateProfile,
 } = require('../controllers/authController');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 12,

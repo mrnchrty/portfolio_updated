@@ -3,7 +3,7 @@ const { getActiveShop } = require('../controllers/shopController');
 
 async function requireShopStaff(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
     const { data: membership, error } = await db
       .from('staff_members')

@@ -10,7 +10,9 @@ function errorHandler(error, request, response, next) {
   if (response.headersSent) return next(error);
 
   const status = Number(error.status) || (error.code === 'P0001' ? 400 : 500);
-  const message = status >= 500 ? 'Unexpected server error. Check the server log for details.' : error.message;
+  const message = status >= 500 && !error.expose
+    ? 'Unexpected server error. Check the server log for details.'
+    : error.message;
 
   if (status >= 500) {
     console.error(error.message, error.stack);

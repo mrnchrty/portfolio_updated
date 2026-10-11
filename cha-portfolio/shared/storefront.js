@@ -20,6 +20,7 @@
     const shop = app.dataset.shop;
     const setup = window.STOREFRONT_CONFIG || {};
     const endpoint = `/api/shops/${encodeURIComponent(shop)}`;
+    const authEndpoint = (path = '') => `${endpoint}/auth${path}`;
     const $ = (id) => document.getElementById(id);
     const html = api.escapeHtml;
 
@@ -730,7 +731,7 @@
 
     async function loadAccount() {
       try {
-        const result = await api.requestJson('/api/auth/me');
+        const result = await api.requestJson(authEndpoint('/me'));
         currentUser = result.user || null;
         profile = result.profile || null;
         staffMemberships = Array.isArray(result.staff_memberships) ? result.staff_memberships : [];
@@ -767,7 +768,7 @@
       setButtonBusy(button, true, 'Signing in…');
       try {
         const formData = new FormData(form);
-        await api.requestJson('/api/auth/login', {
+        await api.requestJson(authEndpoint('/login'), {
           method: 'POST',
           body: { email: formData.get('email'), password: formData.get('password') },
         });
@@ -789,7 +790,7 @@
       setButtonBusy(button, true, 'Creating account…');
       try {
         const formData = new FormData(form);
-        const result = await api.requestJson('/api/auth/register', {
+        const result = await api.requestJson(authEndpoint('/register'), {
           method: 'POST',
           body: {
             fullName: formData.get('fullName'),
@@ -819,7 +820,7 @@
       setMessage(elements.profileMessage, '', '');
       setButtonBusy(button, true, 'Saving…');
       try {
-        const result = await api.requestJson('/api/auth/profile', {
+        const result = await api.requestJson(authEndpoint('/profile'), {
           method: 'PATCH',
           body: { fullName: formData.get('fullName'), phone: formData.get('phone') || '' },
         });
@@ -836,7 +837,7 @@
     async function handleLogout() {
       setButtonBusy(elements.logoutButton, true, 'Signing out…');
       try {
-        await api.requestJson('/api/auth/logout', { method: 'POST', body: {} });
+        await api.requestJson(authEndpoint('/logout'), { method: 'POST', body: {} });
       } catch (error) {
         setMessage(elements.accountMessage, error.message || 'Sign-out could not be completed.', 'error');
       } finally {
@@ -1358,7 +1359,7 @@
 
       setMessage(elements.accountMessage, 'Checking the payment status with the server…', 'info');
       try {
-        const result = await api.requestJson(`/api/payments/sessions/${encodeURIComponent(sessionId)}`);
+        const result = await api.requestJson(`${endpoint}/payments/sessions/${encodeURIComponent(sessionId)}`);
         const kind = result.payment_status === 'paid' ? 'success' : 'info';
         setMessage(elements.accountMessage, `${result.message} Order reference: ${result.order_number}.`, kind);
         await loadDashboard();

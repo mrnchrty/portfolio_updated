@@ -93,7 +93,13 @@ async function stripeWebhook(request, response) {
 
   try {
     const session = event.data.object;
-    const db = getSupabase();
+    const shopSlug = session.metadata?.shop_slug;
+    if (!['digicha', 'mochajaki'].includes(shopSlug)) {
+      console.error('Stripe webhook is missing a supported shop slug:', session.id);
+      return response.status(400).json({ error: 'Stripe session does not identify a supported shop.' });
+    }
+
+    const db = getSupabase(shopSlug);
     const order = await findOrderForSession(db, session);
     if (!order) {
       console.warn('Stripe webhook did not match a stored order:', session.id);
@@ -121,7 +127,8 @@ async function getCheckoutStatus(request, response, next) {
       return response.status(400).json({ error: 'Checkout session ID is not valid.' });
     }
 
-    const db = getSupabase();
+    const shopSlug = request.params.slug;
+    const db = getSupabase(shopSlug);
     const { data: order, error } = await db
       .from('orders')
       .select('id, customer_id, order_number, total, currency, payment_status, payment_session_id')
@@ -134,6 +141,7 @@ async function getCheckoutStatus(request, response, next) {
 
     const session = await getStripe().checkout.sessions.retrieve(sessionId);
     if (
+      session.metadata?.shop_slug !== shopSlug ||
       session.metadata?.customer_id !== request.user.id ||
       !sessionMatchesOrder(session, order)
     ) {

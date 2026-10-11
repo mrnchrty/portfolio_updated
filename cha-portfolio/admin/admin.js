@@ -58,6 +58,10 @@
     return `/api/admin/shops/${encodeURIComponent(shopSlug)}${path}`;
   }
 
+  function authEndpoint(path = '') {
+    return `/api/shops/${encodeURIComponent(shopSlug)}/auth${path}`;
+  }
+
   function money(amount) {
     return api.formatMoney(amount, overview?.shop?.currency || 'PHP');
   }
@@ -122,7 +126,7 @@
 
   async function loadSession() {
     try {
-      const result = await api.requestJson('/api/auth/me');
+      const result = await api.requestJson(authEndpoint('/me'));
       currentUser = result.user || null;
     } catch {
       currentUser = null;
@@ -622,7 +626,7 @@
     setBusy(button, true, 'Signing in…');
     setMessage(elements.accessMessage, '', '');
     try {
-      await api.requestJson('/api/auth/login', {
+      await api.requestJson(authEndpoint('/login'), {
         method: 'POST',
         body: { email: formData.get('email'), password: formData.get('password') },
       });
@@ -639,7 +643,7 @@
   async function signOut() {
     setBusy(elements.signout, true, 'Signing out…');
     try {
-      await api.requestJson('/api/auth/logout', { method: 'POST', body: {} });
+      await api.requestJson(authEndpoint('/logout'), { method: 'POST', body: {} });
     } catch (error) {
       setMessage(elements.accessMessage, error.message || 'The server could not confirm sign-out.', 'error');
     } finally {

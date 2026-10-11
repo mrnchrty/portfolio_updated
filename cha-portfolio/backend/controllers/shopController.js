@@ -196,7 +196,7 @@ async function getActiveDeals(db, shopId) {
 
 async function listProducts(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
 
     const [productResult, categoryResult] = await Promise.all([
@@ -245,7 +245,7 @@ async function listProducts(request, response, next) {
 
 async function listDeals(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
     const deals = await getActiveDeals(db, shop.id);
     response.json({ deals });
@@ -256,7 +256,7 @@ async function listDeals(request, response, next) {
 
 async function getCheckoutConfig(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
     const payment = publicPaymentOptions(shop);
 
@@ -284,7 +284,7 @@ async function getCheckoutConfig(request, response, next) {
 
 async function quoteCart(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
     const items = normalizeItems(request.body?.items);
     const promoCode = normalizePromoCode(request.body?.promoCode);
@@ -321,7 +321,7 @@ async function quoteCart(request, response, next) {
 
 async function getCustomerDashboard(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
 
     const [profileResult, ordersResult, deals] = await Promise.all([
@@ -450,7 +450,7 @@ async function createStripeCheckout({ db, shop, order, user, paymentMethod }) {
 
 async function createOrder(request, response, next) {
   try {
-    const db = getSupabase();
+    const db = getSupabase(request.params.slug);
     const shop = await getActiveShop(db, request.params.slug);
     const body = request.body || {};
     const items = normalizeItems(body.items);

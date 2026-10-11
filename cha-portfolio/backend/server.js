@@ -4,12 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const helmet = require('helmet');
-const { rateLimit } = require('express-rate-limit');
 const adminRoutes = require('./routes/admin');
-const authRoutes = require('./routes/auth');
 const shopRoutes = require('./routes/shops');
-const { getCheckoutStatus, stripeWebhook } = require('./controllers/paymentController');
-const { requireAuth } = require('./middleware/auth');
+const { stripeWebhook } = require('./controllers/paymentController');
 const { errorHandler, notFound } = require('./middleware/errors');
 const {
   sampleOrdersAreAllowed,
@@ -94,18 +91,15 @@ function requireSameOriginForMutations(request, response, next) {
 
 app.use('/api', requireSameOriginForMutations);
 
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  limit: 20,
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
 app.get('/api/health', (request, response) => {
   response.set('Cache-Control', 'no-store');
   response.json({
     status: 'ok',
     supabaseConfigured: supabaseIsConfigured(),
+    supabaseProjects: {
+      digicha: supabaseIsConfigured('digicha'),
+      mochajaki: supabaseIsConfigured('mochajaki'),
+    },
     stripeSecretConfigured: stripeIsConfigured(),
     stripeWebhookConfigured: Boolean(process.env.STRIPE_WEBHOOK_SECRET),
     stripePaymentsReady: stripeIsConfigured() && Boolean(process.env.STRIPE_WEBHOOK_SECRET),
@@ -114,9 +108,7 @@ app.get('/api/health', (request, response) => {
   });
 });
 
-app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/shops', shopRoutes);
-app.get('/api/payments/sessions/:sessionId', requireAuth, getCheckoutStatus);
 app.use('/api/admin', adminRoutes);
 
 app.use('/api', (request, response) => {

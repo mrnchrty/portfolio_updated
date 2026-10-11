@@ -1,4 +1,6 @@
--- Development seed and user-provided starter catalog.
+-- Combined starter seed for one Supabase project that intentionally hosts BOTH stores.
+-- With the current separate-database setup, do not use this file: run seed-digicha.sql in the
+-- DigiCha project and seed-mochajaki.sql in the Mochajaki project instead.
 -- Mochajaki product names and prices below are the menu values supplied by the owner.
 -- DigiCha product names are supplied, but prices/options are still pending; those items stay
 -- unavailable and cannot be ordered until real prices and options are entered.
