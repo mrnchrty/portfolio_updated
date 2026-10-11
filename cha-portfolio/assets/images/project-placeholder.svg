@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-label="Project preview">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9e4fb"/><stop offset="1" stop-color="#fffafc"/></linearGradient></defs>
+      <rect width="900" height="620" rx="36" fill="url(#g)"/>
+      <circle cx="720" cy="120" r="100" fill="#7968b0" opacity=".15"/><circle cx="150" cy="500" r="145" fill="#7968b0" opacity=".12"/>
+      <path d="M95 190 Q190 95 285 190 T475 190" fill="none" stroke="#7968b0" stroke-width="5" opacity=".45"/>
+      <text x="450" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" fill="#7968b0" font-weight="700">Project preview</text>
+      <text x="450" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#554650">Replace with your own image</text>
+      <text x="450" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#776a73">assets/images/project-placeholder.svg</text>
+    </svg>

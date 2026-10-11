@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620" role="img" aria-label="Product image slot">
+  <rect width="900" height="620" fill="#f8f7fb" />
+  <rect x="28" y="28" width="844" height="564" rx="18" fill="none" stroke="#b8b4c8" stroke-width="3" stroke-dasharray="12 12" />
+  <text x="450" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#56536b">Replace with the shop’s actual product image</text>
+  <text x="450" y="326" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#77748a">digi-stickers.svg</text>
+</svg>

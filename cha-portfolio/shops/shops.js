@@ -1,0 +1,1 @@
+// The shops directory uses ordinary page links; no additional JavaScript is required.

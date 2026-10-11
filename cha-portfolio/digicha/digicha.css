@@ -1,0 +1,104 @@
+body.storefront-digicha {
+  --shop-ink: #25213f;
+  --shop-muted: #77738f;
+  --shop-accent: #7052dc;
+  --shop-accent-dark: #473394;
+  --shop-accent-soft: #ece8ff;
+  --shop-page: #f6f5ff;
+  --shop-panel: rgba(255, 255, 255, 0.96);
+  --shop-line: rgba(54, 44, 100, 0.13);
+  --shop-shadow: 0 19px 48px rgba(49, 39, 105, 0.12);
+  --shop-hero-bg: linear-gradient(124deg, #ece5ff 0%, #e1eaff 54%, #e4f8fc 100%);
+  --shop-hero-line: rgba(105, 78, 202, 0.2);
+  --shop-catalog-bg: #f0eff9;
+  --shop-cart-bg: #f4f3fc;
+  --shop-checkout-bg: #eeeffa;
+  --shop-account-bg: #f5f4fb;
+  --shop-image-bg: #f0edff;
+  --shop-deal-bg: #ece8fb;
+  --shop-footer-bg: #282343;
+  --shop-notice-bg: #eeeafd;
+  --shop-notice-line: rgba(117, 84, 217, 0.23);
+  --shop-notice-ink: #4f4185;
+  --shop-reference-bg: #f6f5ff;
+}
+
+.storefront-digicha .store-header {
+  border-bottom-color: rgba(69, 53, 130, 0.13);
+  background: rgba(250, 249, 255, 0.95);
+}
+
+.storefront-digicha .store-brand-mark {
+  border-color: rgba(255, 255, 255, 0.94);
+  background: linear-gradient(145deg, #d8caff, #c9e8ff);
+  color: #5d43bc;
+  box-shadow: inset 0 1px 7px rgba(255, 255, 255, 0.9);
+}
+
+.storefront-digicha .store-hero::before {
+  position: absolute;
+  right: 20%;
+  bottom: -205px;
+  width: 460px;
+  height: 460px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.11), 0 0 0 75px rgba(255, 255, 255, 0.08);
+  content: '';
+}
+
+.storefront-digicha .store-hero h1 span {
+  color: #6045c8;
+}
+
+.storefront-digicha .store-button-primary {
+  background: linear-gradient(110deg, #7550df, #5c6bd5 58%, #418db9);
+}
+
+.storefront-digicha .store-button-primary:hover:not(:disabled) {
+  background: linear-gradient(110deg, #5d3bc8, #4c57bf 58%, #32789e);
+}
+
+.storefront-digicha .store-hero-art > img {
+  border-radius: 24px;
+  box-shadow: 0 26px 58px rgba(59, 47, 127, 0.18);
+}
+
+.storefront-digicha .store-product-card {
+  border-radius: 22px;
+}
+
+.storefront-digicha .store-product-image-wrap {
+  background-image: linear-gradient(145deg, #f1ecff, #e6f5fa);
+}
+
+.storefront-digicha .store-footer {
+  color: #f8f6ff;
+}
+
+.storefront-digicha .store-footer .store-brand-name {
+  color: #fff;
+}
+
+.storefront-digicha .store-footer .store-brand-mark {
+  background: linear-gradient(145deg, #9c84ec, #73b6d1);
+  color: #fff;
+}
+
+.storefront-digicha .store-footer-inner p {
+  color: rgba(255, 255, 255, 0.69);
+}
+
+.storefront-digicha .store-footer-inner > a:last-child {
+  color: #d8d2ff;
+}
+
+.storefront-digicha .deal-card {
+  background: linear-gradient(135deg, #f0eaff, #e5f3fc);
+}
+
+@media (max-width: 650px) {
+  .storefront-digicha .store-hero-art {
+    min-height: 250px;
+  }
+}
