@@ -20,6 +20,19 @@
   color: var(--accent-strong);
 }
 
+.projects-page .project-anchor-nav a {
+  border-color: rgba(222, 169, 197, 0.68);
+  border-radius: 13px 13px 5px 5px;
+  background: linear-gradient(110deg, rgba(255, 230, 242, 0.94), rgba(237, 229, 255, 0.94));
+  color: #814a81;
+  box-shadow: 0 4px 0 rgba(202, 136, 174, 0.1);
+}
+
+.projects-page .project-anchor-nav a:hover {
+  background: linear-gradient(110deg, #f9d9e9, #e6defb);
+  color: #713c81;
+}
+
 .systems-section {
   padding-top: 50px;
 }

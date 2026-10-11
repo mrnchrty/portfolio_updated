@@ -1,4 +1,4 @@
-.about-page {
+body.portfolio-theme.about-page {
   --ink: #382b35;
   --muted: #756270;
   --accent: #d76598;
@@ -361,69 +361,10 @@
   transform: rotate(2deg);
 }
 
-.education-timeline {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 17px;
-}
-
-.education-item {
-  position: relative;
-  min-height: 190px;
-  padding: 25px 25px 24px 32px;
-  border-radius: 15px 22px 15px 22px !important;
-}
-
-.education-item:nth-child(2n) {
-  transform: rotate(0.25deg);
-}
-
-.education-item:nth-child(2n + 1) {
-  transform: rotate(-0.25deg);
-}
-
-.education-item:hover {
-  transform: translateY(-2px) rotate(0deg);
-}
-
-.timeline-marker {
-  position: absolute;
-  top: 32px;
-  left: 13px;
-  width: 8px;
-  height: 8px;
-  border: 2px solid #bc5b88;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(206, 146, 172, 0.2);
-}
-
-.education-item h3 {
-  margin: 15px 0 5px;
-  color: #453540;
-  font-size: 1.02rem;
-  line-height: 1.45;
-}
-
-.education-item p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.91rem;
-}
-
 .about-page .pill {
   border-color: #efcfdd;
   background: #fff2f7;
   color: #8a4b6b;
-}
-
-.experience-section {
-  background: linear-gradient(180deg, transparent, rgba(250, 226, 236, 0.42), transparent);
-}
-
-.experience-grid {
-  align-items: stretch;
 }
 
 .experience-card {
@@ -479,25 +420,6 @@
 .experience-card > .muted {
   margin-top: 15px;
   font-size: 0.85rem;
-}
-
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-top: 18px;
-  color: var(--accent-strong);
-  font-size: 0.86rem;
-  font-weight: 700;
-}
-
-.text-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.tech-section {
-  padding-top: 65px !important;
 }
 
 .technology-grid {
@@ -556,6 +478,42 @@
 
 .personal-section {
   padding-top: 48px !important;
+}
+
+.resume-section {
+  padding-top: 54px !important;
+  background: linear-gradient(180deg, transparent, rgba(248, 224, 239, 0.4), transparent);
+}
+
+.resume-grid {
+  align-items: stretch;
+}
+
+.resume-card {
+  position: relative;
+  height: 100%;
+  border-radius: 8px 22px 18px 18px !important;
+}
+
+.resume-card::before {
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  width: 118px;
+  height: 11px;
+  border: 1px solid #e8bfd1;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(100deg, #fbdce9, #eee4fb);
+  content: '';
+}
+
+.resume-stack-card::before {
+  width: 146px;
+}
+
+.resume-stack-card {
+  grid-column: 1 / -1;
 }
 
 .personal-section .section-heading {
@@ -644,6 +602,16 @@
   height: 28px;
   flex: 0 0 auto;
   object-fit: contain;
+}
+
+.social-placeholder[href] {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.social-placeholder[href]:hover {
+  transform: translateY(-2px);
+  border-color: #d99bb6;
+  background: #fff;
 }
 
 .social-placeholder div {
@@ -856,10 +824,6 @@
     gap: 23px;
   }
 
-  .education-timeline {
-    grid-template-columns: 1fr;
-  }
-
   .about-collections-grid {
     grid-template-columns: 1fr;
   }
@@ -970,7 +934,6 @@
     scroll-behavior: auto;
   }
 
-  .about-page .education-item,
   .about-page .experience-card,
   .about-page .technology-card {
     transition: none;

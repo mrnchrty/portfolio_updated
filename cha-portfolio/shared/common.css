@@ -39,6 +39,51 @@ body {
     #f8f7ff;
 }
 
+body.portfolio-theme {
+  --ink: #2b2a52;
+  --muted: #656983;
+  --accent: #b64eb9;
+  --accent-strong: #8741a3;
+  --accent-cyan: #55a9ce;
+  --accent-soft: #f6e7fb;
+  --line: rgba(255, 255, 255, 0.86);
+  --shadow: 0 22px 60px rgba(76, 64, 126, 0.14);
+  --shadow-soft: 0 12px 35px rgba(76, 64, 126, 0.1);
+  background:
+    radial-gradient(ellipse at 7% 18%, rgba(255, 199, 232, 0.5), transparent 30rem),
+    radial-gradient(ellipse at 92% 14%, rgba(187, 199, 255, 0.47), transparent 32rem),
+    radial-gradient(ellipse at 54% 78%, rgba(177, 233, 245, 0.27), transparent 28rem),
+    #faf8ff;
+}
+
+body.portfolio-theme .brand {
+  color: var(--accent-strong);
+}
+
+body.portfolio-theme .nav-links a[aria-current='page'],
+body.portfolio-theme .nav-links a:hover {
+  background: linear-gradient(110deg, rgba(252, 222, 246, 0.96), rgba(229, 226, 255, 0.96));
+  color: var(--accent-strong);
+}
+
+body.portfolio-theme .eyebrow {
+  color: var(--accent-strong);
+}
+
+body.portfolio-theme .eyebrow::before {
+  background: linear-gradient(135deg, #f3a7d3, #8fd3e5);
+}
+
+body.portfolio-theme .button {
+  background: linear-gradient(110deg, #bd55b7, #8a56c4 60%, #529bc8);
+}
+
+body.portfolio-theme .pill {
+  border-color: rgba(210, 178, 226, 0.48);
+  background: rgba(250, 241, 255, 0.8);
+  color: #695184;
+}
+
 img,
 svg {
   display: block;

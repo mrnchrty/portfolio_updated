@@ -6,8 +6,8 @@ The three front ends are organized into separate `portfolio/`, `digicha-shop/`, 
 
 ## Project contents
 
-- **Home** — Y2K-inspired glassmorphism, a portrait image slot, project previews, Mabini feature, and two shop cards.
-- **About Me** — brief introduction, seven years in Mabini, education, resume/experience, technology logos, social-platform placeholders, and interests. Resume material stays here; there is no resume navigation tab or download button.
+- **Home** — a screenshot-inspired Y2K glassmorphism hero with a portrait image slot and the four-item main navigation.
+- **About Me** — brief introduction, seven years in Mabini, the supplied interests and games, inactive social-profile placeholders, a resume section, and the requested nine technology icons. Resume material stays here; there is no resume navigation tab or download button.
 - **Projects** — scrollable System Development, Graphics (Publication Materials and Certificates), and Writing galleries. Empty image slots, hover/tap descriptions, and an accessible image-preview dialog are included.
 - **Discover Mabini** — short municipality history, resorts and places to research, the requested café names, map searches, and a reminder to check current local information. The guide does not claim personal visits.
 - **Shop directory** — separate “Visit” links open the corresponding storefront in a new tab.
@@ -170,7 +170,7 @@ For a résumé file, place your real PDF at `assets/documents/cha-resume.pdf` on
 ## Content and source notes
 
 - Only the navigation items **Home, About Me, Projects, Shop** appear in the portfolio navigation. “Discover Mabini” is an About Me feature and a linked informational page, not a navigation tab.
-- The About Me page uses actual technology/platform logos from local SVG files. Social-profile URLs and game titles were not supplied, so those areas identify the missing information instead of inventing links, games, or artwork.
+- The About Me page uses local SVG technology icons and Bootstrap Icons social marks. No real social-profile URLs were supplied, so those entries remain inactive and can be configured in the page code. The supplied game titles are shown as text-first labels (with a local Roblox mark); no game artwork or additional titles are guessed.
 - The Mabini page includes the café names **Amaro, Xentea, Alwan, El Raffis, and But First Coffee** as requested. Search links are not a claim that a café is currently at a particular address or open.
 - The history note links to the Municipality of Bauan’s history page: <https://bauan.gov.ph/history/>. Resort/operator references include <https://vivereazure.com/>, the Aiyanar PADI listing at <https://www.padi.com/dive-center/philippines/aiyanar-beach-dive-resort/>, and Camp Netanya’s public page at <https://www.facebook.com/campnetanya/>. Other “Search on Maps” links are search queries; confirm each business, current facilities, and access directly. The page does not claim personal visits.
 - The referenced PDF and grading rubric were not present in the workspace. Replace or verify all education, experience, project, and biographical details before publishing.
