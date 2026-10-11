@@ -9,8 +9,8 @@ const SHOP_SLUGS = new Set(['digicha', 'mochajaki']);
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const OPTION_ID_PATTERN = /^[a-z0-9_-]{1,60}$/i;
 const SHOP_PAGE_PATHS = {
-  digicha: '/digicha/digicha.html',
-  mochajaki: '/mochajaki/mochajaki.html',
+  digicha: '/digicha-shop/',
+  mochajaki: '/mochajaki-shop/',
 };
 
 function httpError(status, message) {

@@ -2,11 +2,11 @@
   const fallbackByImage = new Map([
     [
       '.about-portrait',
-      '../assets/images/cha-profile-placeholder.svg',
+      '../../assets/images/cha-profile-placeholder.svg',
     ],
     [
       '.discover-panel > img',
-      '../assets/images/mabini-placeholder.svg',
+      '../../assets/images/mabini-placeholder.svg',
     ],
   ]);
 

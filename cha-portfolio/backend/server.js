@@ -116,7 +116,7 @@ app.use('/api', (request, response) => {
 });
 app.use(express.static(projectRoot, { extensions: ['html'] }));
 app.get('/', (request, response) => {
-  response.sendFile(path.join(projectRoot, 'index.html'));
+  response.sendFile(path.join(projectRoot, 'portfolio', 'index.html'));
 });
 app.use(notFound);
 app.use(errorHandler);

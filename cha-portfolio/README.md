@@ -2,7 +2,7 @@
 
 A readable, responsive portfolio and two independently styled storefronts. The portfolio uses semantic HTML, CSS, and vanilla JavaScript; the ordering API uses Node.js 18+, Express, two separate Supabase Auth/PostgreSQL projects, and optional Stripe-hosted Checkout.
 
-The source is intentionally kept editable: HTML files are full documents from `<!doctype html>` through their footers, and CSS, browser JavaScript, server code, and SQL remain separate, unminified files.
+The three front ends are organized into separate `portfolio/`, `digicha-shop/`, and `mochajaki-shop/` folders. They currently share this project’s Express backend and common UI/assets; the portfolio’s shop buttons link to the sibling shop folders. The source is intentionally kept editable: HTML files are full documents from `<!doctype html>` through their footers, and CSS, browser JavaScript, server code, and SQL remain separate, unminified files.
 
 ## Project contents
 
@@ -18,21 +18,20 @@ The source is intentionally kept editable: HTML files are full documents from `<
 ## Folder map
 
 ```text
-index.html                         portfolio home
-about/                             About Me, including resume content
-projects/                          project and article galleries
-mabini/                            Discover Mabini
-shops/                             shop directory
-admin/                             protected shop admin interface
-digicha/                           DigiCha storefront
-digicha/digicha.js                 DigiCha catalog fallback
-mochajaki/                         Mochajaki storefront
-mochajaki/mochajaki.js             Mochajaki catalog fallback
-shared/                            shared storefront UI and API helpers
-assets/icons/                      technology and platform logo SVGs
-assets/images/                     blank image slots and supplied menu reference
-backend/                            Express API, per-shop auth, admin, and payment logic
-database/                           schema, per-shop seeds, legacy combined seed, migration
+portfolio/                        portfolio pages, galleries, and shop directory
+  index.html                       portfolio homepage
+  about/                           About Me, including resume content
+  projects/                        project and article galleries
+  mabini/                           Discover Mabini
+  shops/                            Shop directory with links to both storefront folders
+digicha-shop/                       DigiCha standalone storefront files
+mochajaki-shop/                     Mochajaki standalone storefront files
+admin/                              protected shop admin interface
+shared/                             shared storefront UI and API helpers
+assets/icons/                       technology and platform logo SVGs
+assets/images/                      blank image slots and supplied menu reference
+backend/                             Express API, per-shop auth, admin, and payment logic
+database/                            schema, per-shop seeds, legacy combined seed, migration
 ```
 
 ## Run locally
