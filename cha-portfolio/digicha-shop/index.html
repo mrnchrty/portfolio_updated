@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#17142d" />
+    <meta
+      name="description"
+      content="Browse DigiCha sample custom stickers, mugs, keychains, tarpaulins, certificates, and personalized gifts."
+    />
+    <title>DigiCha | Custom Prints &amp; Gifts</title>
+    <link rel="stylesheet" href="../shared/storefront.css" />
+    <link rel="stylesheet" href="digicha.css" />
+    <script src="../shared/shop-api.js" defer></script>
+    <script src="../shared/storefront.js" defer></script>
+    <script src="digicha.js" defer></script>
+  </head>
+  <body class="storefront storefront-digicha">
+    <header class="store-header">
+      <div class="store-header-inner">
+        <a class="store-brand" href="index.html" aria-label="DigiCha, shop home">
+          <span class="store-brand-mark" aria-hidden="true">D<span>✦</span></span>
+          <span class="store-brand-name">DigiCha</span>
+        </a>
+        <button
+          class="store-menu-toggle"
+          type="button"
+          aria-label="Open shop navigation"
+          aria-expanded="false"
+          aria-controls="store-navigation"
+        >
+          <span aria-hidden="true">☰</span>
+        </button>
+        <nav class="store-nav" id="store-navigation" aria-label="DigiCha navigation">
+          <a href="#catalog">Shop</a>
+          <a href="#deals">Deals</a>
+          <a href="#account">My account</a>
+          <a class="store-back-link" href="../portfolio/">Portfolio</a>
+          <a class="store-cart-link" href="#cart" aria-label="Go to shopping cart">
+            Cart <span id="cart-count" class="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="shop-promo-ribbon digi-promo-ribbon" aria-label="DigiCha product categories">
+      <div class="store-container">
+        <span>MADE PERSONAL</span><span aria-hidden="true">✦</span>
+        <span>CUSTOM STICKERS</span><span aria-hidden="true">✦</span>
+        <span>PRINTED GIFTS</span><span aria-hidden="true">✦</span>
+        <span>ONE-OF-A-KIND DETAILS</span>
+      </div>
+    </div>
+
+    <main class="store-main" data-shop-app data-shop="digicha">
+      <section class="store-hero" aria-labelledby="store-title">
+        <div class="store-hero-inner">
+          <div class="store-hero-copy">
+            <span class="store-kicker">Custom details, made yours</span>
+            <h1 id="store-title">Little things.<br /><span>Big meaning.</span></h1>
+            <p>
+              Browse sample stickers, mugs, keychains, tarpaulins, certificates, and personalized gifts.
+              Choose a style, then share the details you want customized.
+            </p>
+            <div class="store-hero-actions">
+              <a class="store-button store-button-primary" href="#catalog">Browse the shop <span aria-hidden="true">↓</span></a>
+              <button class="store-button store-button-light" type="button" data-scroll-to="account">
+                Sign in / create account
+              </button>
+            </div>
+            <p class="store-config-status" data-backend-status role="status" aria-live="polite">
+              Loading shop catalog…
+            </p>
+          </div>
+          <div class="store-hero-art">
+            <span class="digi-orbit digi-orbit-one" aria-hidden="true"></span>
+            <span class="digi-orbit digi-orbit-two" aria-hidden="true"></span>
+            <!-- Replace this clearly marked slot with DigiCha's supplied brand image when ready. -->
+            <img
+              src="../assets/images/banner-digicha.svg"
+              alt="Replaceable DigiCha brand-image placeholder"
+            />
+            <span class="digi-art-note">DIGICHA · PERSONALIZED GOODS</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="digi-category-section" aria-labelledby="digi-category-title">
+        <div class="store-container">
+          <div class="category-section-heading">
+            <div>
+              <span class="store-kicker">Find your kind of custom</span>
+              <h2 id="digi-category-title">Shop by category</h2>
+            </div>
+            <p>Sample product concepts and suggested PHP prices. Final sizes, materials, artwork, and pricing are for owner review.</p>
+          </div>
+          <div class="digi-category-grid">
+            <button class="digi-category-card" type="button" data-shop-category="Stickers">
+              <span class="digi-category-symbol" aria-hidden="true">✦</span><span class="digi-category-name">Stickers</span><span class="digi-category-count">3 sample designs</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Mugs">
+              <span class="digi-category-symbol" aria-hidden="true">◒</span><span class="digi-category-name">Mugs</span><span class="digi-category-count">3 sample styles</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Keychains">
+              <span class="digi-category-symbol" aria-hidden="true">⌘</span><span class="digi-category-name">Keychains</span><span class="digi-category-count">3 sample styles</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Tarpulins">
+              <span class="digi-category-symbol" aria-hidden="true">▤</span><span class="digi-category-name">Tarpulins</span><span class="digi-category-count">3 sample sizes</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Certificates">
+              <span class="digi-category-symbol" aria-hidden="true">✧</span><span class="digi-category-name">Certificates</span><span class="digi-category-count">3 sample prints</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="store-section featured-section" aria-labelledby="featured-title">
+        <div class="store-container">
+          <div class="store-section-heading">
+            <div>
+              <span class="store-kicker">A few ideas to start</span>
+              <h2 id="featured-title">Sample product ideas</h2>
+            </div>
+            <p>Suggestions use the sample catalog and your current cart, not purchase history.</p>
+          </div>
+          <div class="store-product-grid" id="suggestion-grid">
+            <p class="store-empty">Suggestions will appear after products are available to order.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="store-section catalog-section" id="catalog" aria-labelledby="catalog-title">
+        <div class="store-container">
+          <div class="store-section-heading">
+            <div>
+              <span class="store-kicker">The collection</span>
+              <h2 id="catalog-title">Browse all products</h2>
+            </div>
+            <span class="store-mode" data-mode-label>Loading</span>
+          </div>
+          <div class="store-toolbar">
+            <label class="store-search-field">
+              <span class="visually-hidden">Search products</span>
+              <span aria-hidden="true">⌕</span>
+              <input id="product-search" type="search" placeholder="Search products" autocomplete="off" />
+            </label>
+            <label class="store-filter-field">
+              <span class="visually-hidden">Filter by category</span>
+              <select id="category-filter">
+                <option value="all">All categories</option>
+              </select>
+            </label>
+            <label class="store-filter-field">
+              <span class="visually-hidden">Filter by availability</span>
+              <select id="availability-filter">
+                <option value="all">All availability</option>
+                <option value="available">Available only</option>
+              </select>
+            </label>
+            <label class="store-filter-field">
+              <span class="visually-hidden">Sort products</span>
+              <select id="sort-filter">
+                <option value="featured">Featured first</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="name">Name: A to Z</option>
+              </select>
+            </label>
+          </div>
+          <p class="store-message" id="store-status" role="status" aria-live="polite"></p>
+          <div class="store-product-grid" id="product-grid">
+            <p class="store-empty">Loading products…</p>
+          </div>
+          <p class="store-empty" id="no-products" hidden>No products match these filters.</p>
+        </div>
+      </section>
+
+      <section class="store-section deals-section" id="deals" aria-labelledby="deals-title">
+        <div class="store-container">
+          <div class="store-section-heading">
+            <div>
+              <span class="store-kicker">Only active shop offers</span>
+              <h2 id="deals-title">Deals &amp; promotions</h2>
+            </div>
+            <p>Only configured, active offers appear here. Fixed discounts and totals are displayed in Philippine pesos (PHP).</p>
+          </div>
+          <div class="store-deals-grid" id="deals-grid">
+            <p class="store-empty">Checking for active deals…</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="store-section cart-section" id="cart" aria-labelledby="cart-title">
+        <div class="store-container">
+          <div class="store-section-heading">
+            <div>
+              <span class="store-kicker">Your selection</span>
+              <h2 id="cart-title">Shopping cart</h2>
+            </div>
+            <span class="cart-count large-cart-count" data-cart-count-text>0 items</span>
+          </div>
+          <div class="store-cart-layout">
+            <div class="store-panel cart-lines-panel">
+              <div id="cart-items" class="cart-lines">
+                <p class="store-empty">Your cart is empty.</p>
+              </div>
+            </div>
+            <aside class="store-panel cart-summary" aria-labelledby="cart-summary-title">
+              <h3 id="cart-summary-title">Order summary</h3>
+              <div class="summary-row"><span>Subtotal</span><strong id="cart-subtotal">₱0.00</strong></div>
+              <div class="summary-row discount-row" id="discount-row" hidden>
+                <span>Discount</span><strong id="cart-discount">−₱0.00</strong>
+              </div>
+              <div class="summary-row summary-total"><span>Estimated total</span><strong id="cart-total">₱0.00</strong></div>
+              <p class="summary-note">Final product prices, availability, and discounts are verified by the server when an order is placed. No unconfigured fees are added.</p>
+              <form class="promo-form" id="promo-form">
+                <label for="promo-code">Have a promo code?</label>
+                <div class="promo-input-row">
+                  <input id="promo-code" name="promoCode" type="text" maxlength="60" autocomplete="off" placeholder="Enter code" />
+                  <button class="store-button store-button-secondary" type="submit">Apply</button>
+                </div>
+                <button class="clear-promo-link" id="clear-promo" type="button" hidden>Remove code</button>
+                <p class="promo-message" id="promo-message" role="status" aria-live="polite"></p>
+              </form>
+              <button class="store-button store-button-primary full-width" id="continue-checkout" type="button">
+                Continue to checkout
+              </button>
+              <button class="store-button store-button-quiet full-width" id="clear-cart" type="button">Clear cart</button>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="store-section checkout-section" id="checkout" aria-labelledby="checkout-title">
+        <div class="store-container">
+          <div class="store-section-heading">
+            <div>
+              <span class="store-kicker">Review before placing an order</span>
+              <h2 id="checkout-title">Checkout</h2>
+            </div>
+          </div>
+          <div class="checkout-notice" id="checkout-setup-notice" role="status" aria-live="polite">
+            Checking available fulfillment and payment options…
+          </div>
+          <div class="store-checkout-layout">
+            <form class="store-panel checkout-form" id="checkout-form">
+              <h3>Order details</h3>
+              <p class="muted">Sign in or create an account below to continue. Your email is taken from your authenticated account.</p>
+              <div class="store-form-grid">
+                <label class="store-field">
+                  <span>Full name</span>
+                  <input id="checkout-name" name="customerName" type="text" maxlength="120" autocomplete="name" required />
+                </label>
+                <label class="store-field">
+                  <span>Contact number <small>(optional)</small></span>
+                  <input id="checkout-contact" name="customerContact" type="tel" maxlength="40" autocomplete="tel" />
+                </label>
+                <label class="store-field full-field">
+                  <span>Fulfillment method</span>
+                  <select id="fulfillment-method" name="fulfillmentMethod" required>
+                    <option value="">Shop options load after setup</option>
+                  </select>
+                </label>
+                <label class="store-field full-field">
+                  <span>Customization &amp; fulfillment details <small>(optional)</small></span>
+                  <textarea
+                    id="fulfillment-details"
+                    name="fulfillmentDetails"
+                    maxlength="1000"
+                    data-placeholder="For each item, add the exact name or text, preferred colors, and any customization notes. Confirm artwork and fulfillment with DigiCha."
+                    placeholder="For each item, add the exact name or text, preferred colors, and any customization notes. Confirm artwork and fulfillment with DigiCha."
+                  ></textarea>
+                </label>
+              </div>
+              <fieldset class="payment-options" id="payment-options">
+                <legend>Payment method</legend>
+                <p class="muted">GCash, Maya, and Other are shown as setup choices. Payment details and ordering become available after the shop is connected.</p>
+                <div id="payment-method-list"></div>
+              </fieldset>
+              <p class="payment-instructions" id="payment-instructions" hidden></p>
+              <button class="store-button store-button-primary full-width" id="place-order" type="submit" disabled>
+                Place order
+              </button>
+              <p class="checkout-message" id="checkout-message" role="status" aria-live="polite"></p>
+            </form>
+            <aside class="store-panel checkout-review" aria-labelledby="checkout-review-title">
+              <h3 id="checkout-review-title">Order review</h3>
+              <div id="checkout-review"><p class="store-empty">Your cart is empty.</p></div>
+              <a class="account-shortcut" href="#account">Need an account? Sign in or register <span aria-hidden="true">↗</span></a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="store-section account-section" id="account" aria-labelledby="account-title">
+        <div class="store-container">
+          <div class="store-section-heading">
+            <div>
+              <span class="store-kicker">Your shop profile</span>
+              <h2 id="account-title">Account &amp; orders</h2>
+            </div>
+            <span class="account-session-label" id="account-session-label">Not signed in</span>
+          </div>
+          <div id="account-forms" class="account-auth-grid">
+            <form class="store-panel account-form" id="login-form">
+              <span class="account-form-label">Welcome back</span>
+              <h3>Sign in</h3>
+              <label class="store-field">
+                <span>Email</span>
+                <input name="email" type="email" maxlength="254" autocomplete="email" required />
+              </label>
+              <label class="store-field">
+                <span>Password</span>
+                <input name="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" required />
+              </label>
+              <button class="store-button store-button-primary" type="submit">Sign in</button>
+              <p class="form-feedback" id="login-message" role="status" aria-live="polite"></p>
+            </form>
+            <form class="store-panel account-form" id="register-form">
+              <span class="account-form-label">First time here?</span>
+              <h3>Create an account</h3>
+              <label class="store-field">
+                <span>Full name</span>
+                <input name="fullName" type="text" minlength="2" maxlength="120" autocomplete="name" required />
+              </label>
+              <label class="store-field">
+                <span>Email</span>
+                <input name="email" type="email" maxlength="254" autocomplete="email" required />
+              </label>
+              <label class="store-field">
+                <span>Password <small>(at least 8 characters)</small></span>
+                <input name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required />
+              </label>
+              <button class="store-button store-button-secondary" type="submit">Create account</button>
+              <p class="form-feedback" id="register-message" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <section class="store-panel customer-dashboard" id="customer-dashboard" hidden aria-label="Customer dashboard">
+            <div class="dashboard-topline">
+              <div>
+                <span class="account-form-label">Your dashboard</span>
+                <h3 id="dashboard-welcome">Welcome</h3>
+                <p id="dashboard-email" class="muted"></p>
+                <a class="account-admin-link" id="store-admin-link" hidden></a>
+              </div>
+              <button class="store-button store-button-quiet" id="logout-button" type="button">Sign out</button>
+            </div>
+            <form class="profile-form" id="profile-form">
+              <h4>Account information</h4>
+              <div class="profile-form-grid">
+                <label class="store-field">
+                  <span>Full name</span>
+                  <input name="fullName" type="text" minlength="2" maxlength="120" required />
+                </label>
+                <label class="store-field">
+                  <span>Contact number</span>
+                  <input name="phone" type="tel" maxlength="40" />
+                </label>
+                <button class="store-button store-button-secondary" type="submit">Save account details</button>
+              </div>
+              <p class="form-feedback" id="profile-message" role="status" aria-live="polite"></p>
+            </form>
+            <div class="dashboard-columns">
+              <section>
+                <div class="dashboard-heading-row">
+                  <h4>Recent &amp; current orders</h4>
+                  <button class="text-button" id="refresh-orders" type="button">Refresh</button>
+                </div>
+                <div class="customer-orders" id="customer-orders">
+                  <p class="store-empty">Sign in to load your real order history.</p>
+                </div>
+              </section>
+              <section>
+                <h4>Available deals</h4>
+                <div class="dashboard-deals" id="dashboard-deals">
+                  <p class="store-empty">No customer-specific deals are shown until they are configured.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+          <p class="account-message" id="account-message" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <dialog class="product-dialog" id="product-dialog" aria-labelledby="product-dialog-title">
+        <button class="dialog-close" type="button" data-close-product aria-label="Close product details">×</button>
+        <div id="product-detail-content"></div>
+      </dialog>
+    </main>
+
+    <footer class="store-footer">
+      <div class="store-container store-footer-inner">
+        <a class="store-brand" href="index.html">
+          <span class="store-brand-mark" aria-hidden="true">D<span>✦</span></span>
+          <span class="store-brand-name">DigiCha</span>
+        </a>
+        <p>Independent shop identity · Catalog and orders stored separately from Mochajaki.</p>
+        <a href="../portfolio/">Return to Cha’s portfolio</a>
+      </div>
+    </footer>
+  </body>
+</html>

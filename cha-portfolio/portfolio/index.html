@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080708" />
+    <meta
+      name="description"
+      content="Maroine Charity De Roy is a Business Analytics student interested in web design, development, data, and creative work."
+    />
+    <title>Home | Cha's Portfolio</title>
+    <link rel="stylesheet" href="../shared/common.css" />
+    <link rel="stylesheet" href="home/home.css" />
+    <script src="../shared/common.js" defer></script>
+    <script src="../shared/social-links.js" defer></script>
+    <script src="home/home.js" defer></script>
+  </head>
+  <body class="home-page">
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="index.html" aria-label="Cha, home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>cha / portfolio</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="main-navigation"
+        >
+          <span aria-hidden="true">☰</span>
+        </button>
+        <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="about/about.html">About Me</a>
+          <a href="projects/projects.html">Projects</a>
+          <a href="shops/shops.html">Shop</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <h1 class="hero-title" id="hero-title">
+              <span class="hero-title-line">Hi, I'm Cha</span>
+              <span class="hero-title-line hero-role-line">
+                I'm <span class="hero-filled">a</span>
+                <span class="hero-outline" data-role-text>BSIT Student</span>
+              </span>
+            </h1>
+            <p class="hero-intro">
+              I’m Maroine Charity De Roy, a BSIT student specializing in Business Analytics at
+              Batangas State University TNEU – Mabini Campus. I’m interested in web design and
+              development, data, and creative work.
+            </p>
+
+            <div class="home-socials" role="group" aria-label="Social media profiles">
+              <!-- Add real profile URLs to data-social-url when available. Empty entries stay inactive. -->
+              <div
+                class="home-social-link"
+                data-social-name="Facebook"
+                data-social-url=""
+                role="img"
+                aria-label="Facebook profile URL not supplied"
+                title="Facebook profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--facebook" aria-hidden="true"></span>
+              </div>
+              <div
+                class="home-social-link"
+                data-social-name="Instagram"
+                data-social-url=""
+                role="img"
+                aria-label="Instagram profile URL not supplied"
+                title="Instagram profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--instagram" aria-hidden="true"></span>
+              </div>
+              <div
+                class="home-social-link"
+                data-social-name="Telegram"
+                data-social-url=""
+                role="img"
+                aria-label="Telegram profile URL not supplied"
+                title="Telegram profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--telegram" aria-hidden="true"></span>
+              </div>
+              <div
+                class="home-social-link"
+                data-social-name="TikTok"
+                data-social-url=""
+                role="img"
+                aria-label="TikTok profile URL not supplied"
+                title="TikTok profile URL not supplied"
+              >
+                <span class="home-social-icon home-social-icon--tiktok" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <div class="actions hero-actions">
+              <a class="button" href="projects/projects.html">Explore my work</a>
+              <a class="button secondary" href="about/about.html">View about me</a>
+            </div>
+          </div>
+
+          <div
+            class="home-film"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Four-photo looping filmstrip"
+            data-home-film
+          >
+            <div class="film-perforations" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="home-film-window">
+              <!-- Add your four images at the data-photo-src paths; update each image's data-photo-alt. -->
+              <figure class="home-film-slide is-active" data-film-slide aria-hidden="false">
+                <img
+                  src="../assets/images/cha-film-01-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-01.jpg"
+                  data-photo-alt=""
+                  alt="Photo 1 placeholder; replace with your own image"
+                />
+              </figure>
+              <figure class="home-film-slide" data-film-slide aria-hidden="true">
+                <img
+                  src="../assets/images/cha-film-02-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-02.jpg"
+                  data-photo-alt=""
+                  alt="Photo 2 placeholder; replace with your own image"
+                />
+              </figure>
+              <figure class="home-film-slide" data-film-slide aria-hidden="true">
+                <img
+                  src="../assets/images/cha-film-03-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-03.jpg"
+                  data-photo-alt=""
+                  alt="Photo 3 placeholder; replace with your own image"
+                />
+              </figure>
+              <figure class="home-film-slide" data-film-slide aria-hidden="true">
+                <img
+                  src="../assets/images/cha-film-04-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-04.jpg"
+                  data-photo-alt=""
+                  alt="Photo 4 placeholder; replace with your own image"
+                />
+              </figure>
+            </div>
+            <div class="film-perforations" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="film-counter" data-film-counter aria-hidden="true">01 / 04</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

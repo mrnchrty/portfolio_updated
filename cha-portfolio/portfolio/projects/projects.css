@@ -1,0 +1,453 @@
+.project-anchor-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.project-anchor-nav a {
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
+  color: #625488;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.project-anchor-nav a:hover {
+  background: #fff;
+  color: var(--accent-strong);
+}
+
+.projects-page .project-anchor-nav a {
+  border-color: rgba(222, 169, 197, 0.68);
+  border-radius: 13px 13px 5px 5px;
+  background: linear-gradient(110deg, rgba(255, 230, 242, 0.94), rgba(237, 229, 255, 0.94));
+  color: #814a81;
+  box-shadow: 0 4px 0 rgba(202, 136, 174, 0.1);
+}
+
+.projects-page .project-anchor-nav a:hover {
+  background: linear-gradient(110deg, #f9d9e9, #e6defb);
+  color: #713c81;
+}
+
+.systems-section {
+  padding-top: 50px;
+}
+
+.system-gallery {
+  align-items: stretch;
+}
+
+.work-card {
+  position: relative;
+  display: flex;
+  min-height: 490px;
+  flex-direction: column;
+  padding: 13px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 210ms ease, box-shadow 210ms ease;
+}
+
+.work-card:hover,
+.work-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 66px rgba(63, 50, 111, 0.18);
+}
+
+.work-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(232, 226, 255, 0.84), rgba(222, 245, 247, 0.84));
+  object-fit: cover;
+}
+
+.work-card-heading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 15px 16px;
+}
+
+.work-card-heading h3 {
+  margin: 13px 0 auto;
+  font-size: clamp(1.12rem, 2vw, 1.4rem);
+  line-height: 1.4;
+}
+
+.card-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 21px;
+  color: #746c8d;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.card-hint span {
+  color: var(--accent-strong);
+}
+
+.work-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 21px;
+  background:
+    radial-gradient(circle at 87% 12%, rgba(154, 128, 211, 0.22), transparent 16rem),
+    rgba(30, 30, 58, 0.95);
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.work-overlay .eyebrow {
+  color: #e8bcf4;
+}
+
+.work-overlay h3 {
+  max-width: 440px;
+  margin: 18px 0 10px;
+  font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+  line-height: 1.36;
+}
+
+.work-overlay p {
+  max-width: 530px;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.work-overlay .work-detail-note {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.69);
+  font-size: 0.81rem;
+}
+
+.work-card:hover .work-overlay,
+.work-card:focus-visible .work-overlay,
+.work-card.is-open .work-overlay {
+  opacity: 1;
+}
+
+.graphics-section {
+  background: linear-gradient(180deg, transparent, rgba(223, 220, 255, 0.23), transparent);
+}
+
+.gallery-subsection + .gallery-subsection {
+  margin-top: 54px;
+}
+
+.subsection-heading {
+  margin: 0 0 18px;
+}
+
+.subsection-heading h3 {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.2rem, 2.7vw, 1.6rem);
+  letter-spacing: -0.06em;
+}
+
+.subsection-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.gallery-grid,
+.certificate-grid {
+  align-items: stretch;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.59);
+  transition: transform 190ms ease, box-shadow 190ms ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 23px 50px rgba(73, 61, 122, 0.15);
+}
+
+.preview-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  cursor: zoom-in;
+  text-align: left;
+}
+
+.preview-button img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  background: rgba(234, 232, 255, 0.72);
+  object-fit: contain;
+  transition: transform 240ms ease;
+}
+
+.preview-button:hover img {
+  transform: scale(1.025);
+}
+
+.preview-indicator {
+  position: absolute;
+  right: 11px;
+  bottom: 11px;
+  display: grid;
+  width: 37px;
+  height: 37px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #704ba5;
+  font-size: 1.6rem;
+  line-height: 1;
+  box-shadow: 0 7px 20px rgba(52, 41, 92, 0.16);
+  backdrop-filter: blur(13px);
+}
+
+.gallery-item figcaption {
+  display: grid;
+  gap: 4px;
+  padding: 14px 8px 9px;
+}
+
+.gallery-item figcaption strong {
+  font-size: 0.91rem;
+}
+
+.gallery-item figcaption span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.certificate-item .preview-button img {
+  height: 300px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.writing-section {
+  padding-top: 56px;
+}
+
+.writing-note {
+  margin-bottom: 22px;
+}
+
+.writing-list {
+  display: grid;
+  gap: 17px;
+}
+
+.writing-entry {
+  display: grid;
+  grid-template-columns: minmax(205px, 285px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 38px);
+  padding: 17px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.writing-image img {
+  aspect-ratio: 4 / 3;
+}
+
+.writing-copy {
+  padding: 14px 12px;
+}
+
+.writing-copy h3 {
+  margin: 14px 0 7px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  letter-spacing: -0.06em;
+}
+
+.writing-copy p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.writing-link-placeholder {
+  display: inline-block;
+  margin-top: 16px;
+  color: #716b89;
+  font-size: 0.81rem;
+  font-weight: 600;
+}
+
+.lightbox {
+  position: fixed;
+  width: min(94vw, 1180px);
+  max-width: 1180px;
+  max-height: 92vh;
+  padding: 18px 62px 16px;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 22px;
+  background: rgba(24, 22, 45, 0.97);
+  color: white;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.43);
+}
+
+.lightbox::backdrop {
+  background: rgba(17, 14, 32, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+}
+
+.lightbox-bar .eyebrow {
+  margin: 0;
+  color: #ead5fa;
+}
+
+.lightbox-close {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+.lightbox-image {
+  width: 100%;
+  max-height: 75vh;
+  margin-top: 9px;
+  border-radius: 11px;
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  margin: 9px 0 0;
+  color: rgba(255, 255, 255, 0.77);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.lightbox-nav {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  width: 42px;
+  height: 54px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.lightbox-previous {
+  left: 12px;
+}
+
+.lightbox-next {
+  right: 12px;
+}
+
+@media (max-width: 720px) {
+  .work-card {
+    min-height: 440px;
+  }
+
+  .writing-entry {
+    grid-template-columns: minmax(150px, 230px) minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .certificate-item .preview-button img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 580px) {
+  .work-card {
+    min-height: 405px;
+  }
+
+  .work-overlay {
+    padding: 22px;
+  }
+
+  .writing-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .writing-copy {
+    padding: 8px 4px 10px;
+  }
+
+  .certificate-item .preview-button img {
+    height: 280px;
+  }
+
+  .lightbox {
+    width: 96vw;
+    max-height: 94vh;
+    padding: 14px 43px 13px;
+  }
+
+  .lightbox-image {
+    max-height: 76vh;
+  }
+
+  .lightbox-nav {
+    width: 32px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+
+  .lightbox-previous {
+    left: 5px;
+  }
+
+  .lightbox-next {
+    right: 5px;
+  }
+}

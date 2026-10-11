@@ -1,0 +1,185 @@
+.shops-directory-section {
+  padding-top: 38px;
+}
+
+.shop-directory-grid {
+  align-items: stretch;
+}
+
+.store-directory-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 29px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: var(--shadow);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.store-directory-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 29px 70px rgba(59, 52, 92, 0.18);
+}
+
+.store-directory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 9px 7px 15px;
+}
+
+.store-monogram {
+  position: relative;
+  display: grid;
+  width: 55px;
+  height: 55px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 19px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  box-shadow: inset 0 1px 8px rgba(255, 255, 255, 0.88);
+}
+
+.store-monogram span {
+  position: absolute;
+  top: 3px;
+  right: 7px;
+  font-size: 0.7rem;
+}
+
+.store-category {
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
+  color: #5c647e;
+  font-size: 0.73rem;
+  font-weight: 700;
+}
+
+.store-directory-digi .store-monogram {
+  background: linear-gradient(145deg, #ebddff, #d8e8ff);
+  color: #6e4cbd;
+}
+
+.store-directory-mocha .store-monogram {
+  background: linear-gradient(145deg, #f8dfc9, #e7eccf);
+  color: #76503a;
+}
+
+.store-banner {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 20px;
+  background: rgba(243, 239, 255, 0.7);
+  object-fit: cover;
+}
+
+.store-directory-copy {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 22px 14px 13px;
+}
+
+.store-directory-copy .eyebrow {
+  font-size: 0.65rem;
+}
+
+.store-directory-copy h2 {
+  margin: 8px 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  letter-spacing: -0.07em;
+}
+
+.store-directory-copy > p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+}
+
+.store-directory-copy .store-price-note {
+  margin-top: 2px;
+  color: #78657e;
+  font-size: 0.84rem;
+}
+
+.menu-price-list {
+  width: 100%;
+  padding: 14px 15px 14px 34px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.52);
+  font-variant-numeric: tabular-nums;
+}
+
+.store-feature-list {
+  display: grid;
+  gap: 7px;
+  margin: 19px 0 24px;
+  padding-left: 20px;
+  color: #626983;
+  font-size: 0.88rem;
+}
+
+.store-visit-button {
+  margin-top: auto;
+}
+
+.store-directory-digi .store-visit-button {
+  background: linear-gradient(110deg, #7657c9, #4c84cb);
+}
+
+.store-directory-mocha .store-visit-button {
+  background: linear-gradient(110deg, #996c48, #6c8543);
+}
+
+.directory-note-section {
+  padding-top: 2px;
+}
+
+.directory-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 21px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.directory-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.directory-note-icon {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #f0d9f3, #dcebf8);
+  color: #715297;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (max-width: 620px) {
+  .store-directory-card {
+    padding: 12px;
+  }
+
+  .store-directory-copy {
+    padding: 18px 8px 10px;
+  }
+}

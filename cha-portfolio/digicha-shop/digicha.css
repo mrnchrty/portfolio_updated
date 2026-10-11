@@ -1,0 +1,465 @@
+body.storefront-digicha {
+  --shop-ink: #211419;
+  --shop-muted: #75646a;
+  --shop-accent: #ed397f;
+  --shop-accent-dark: #b51d5c;
+  --shop-accent-soft: #ffe8f1;
+  --shop-page: #fffafd;
+  --shop-panel: #fff;
+  --shop-line: rgba(56, 17, 32, 0.14);
+  --shop-shadow: 0 18px 48px rgba(55, 19, 34, 0.11);
+  --shop-hero-bg: #151115;
+  --shop-hero-line: rgba(255, 105, 160, 0.28);
+  --shop-catalog-bg: #fff4f8;
+  --shop-cart-bg: #fff3f7;
+  --shop-checkout-bg: #fff6f9;
+  --shop-account-bg: #fff7fa;
+  --shop-image-bg: #fcebf2;
+  --shop-deal-bg: #ffeaf2;
+  --shop-footer-bg: #151115;
+  --shop-notice-bg: #fff0f6;
+  --shop-notice-line: rgba(218, 53, 115, 0.28);
+  --shop-notice-ink: #842447;
+  --shop-reference-bg: #fffafd;
+}
+
+.storefront-digicha .store-header {
+  border-bottom-color: rgba(255, 125, 171, 0.24);
+  background: rgba(20, 16, 19, 0.97);
+  box-shadow: 0 8px 24px rgba(13, 9, 11, 0.18);
+}
+
+.storefront-digicha .store-brand-mark {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(145deg, #f85b98, #d72269);
+  color: #fff;
+  box-shadow: 0 7px 20px rgba(225, 43, 112, 0.22);
+}
+
+.storefront-digicha .store-brand-name {
+  color: #fff7fa;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.28rem;
+  letter-spacing: -0.035em;
+}
+
+.storefront-digicha .store-nav > a {
+  color: rgba(255, 245, 248, 0.76);
+}
+
+.storefront-digicha .store-nav > a:hover {
+  background: rgba(237, 57, 127, 0.16);
+  color: #ff9fc2;
+}
+
+.storefront-digicha .store-nav .store-back-link {
+  border-left-color: rgba(255, 255, 255, 0.16);
+}
+
+.storefront-digicha .store-nav .store-cart-link {
+  background: #ed397f;
+  color: #fff;
+}
+
+.storefront-digicha .store-menu-toggle {
+  border-color: rgba(255, 139, 179, 0.38);
+  background: #2a171f;
+  color: #ff9fc2;
+}
+
+.shop-promo-ribbon {
+  overflow: hidden;
+}
+
+.shop-promo-ribbon .store-container {
+  display: flex;
+  min-height: 39px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+.digi-promo-ribbon {
+  background: #e9357b;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.digi-promo-ribbon span[aria-hidden='true'] {
+  opacity: 0.72;
+}
+
+.storefront-digicha .store-hero {
+  background:
+    radial-gradient(circle at 78% 47%, rgba(205, 42, 106, 0.2), transparent 28%),
+    radial-gradient(circle at 9% 110%, rgba(238, 57, 127, 0.13), transparent 30%),
+    #151115;
+  color: #fff;
+}
+
+.storefront-digicha .store-hero::before {
+  position: absolute;
+  right: 19%;
+  bottom: -240px;
+  width: 560px;
+  height: 560px;
+  border: 1px solid rgba(255, 125, 171, 0.19);
+  border-radius: 50%;
+  box-shadow: 0 0 0 32px rgba(255, 125, 171, 0.045), 0 0 0 84px rgba(255, 125, 171, 0.03);
+  content: '';
+  pointer-events: none;
+}
+
+.storefront-digicha .store-hero::after {
+  border-color: rgba(255, 125, 171, 0.21);
+  box-shadow: 0 0 0 25px rgba(255, 125, 171, 0.045), 0 0 0 65px rgba(255, 125, 171, 0.025);
+}
+
+.storefront-digicha .store-hero-inner {
+  min-height: 505px;
+}
+
+.storefront-digicha .store-kicker {
+  color: #ff78aa;
+}
+
+.storefront-digicha .store-hero h1 {
+  max-width: 690px;
+  color: #fff7fa;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3.25rem, 7vw, 6.4rem);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.97;
+}
+
+.storefront-digicha .store-hero h1 span {
+  color: #ff7eac;
+  font-style: italic;
+}
+
+.storefront-digicha .store-hero-copy > p:not(.store-kicker) {
+  max-width: 550px;
+  color: rgba(255, 246, 249, 0.73);
+  font-size: 1rem;
+}
+
+.storefront-digicha .store-button-primary {
+  background: #ed397f;
+  color: #fff;
+}
+
+.storefront-digicha .store-button-primary:hover:not(:disabled) {
+  background: #c51f63;
+}
+
+.storefront-digicha .store-button-light {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.storefront-digicha .store-button-light:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.storefront-digicha .store-config-status {
+  color: rgba(255, 246, 249, 0.58);
+}
+
+.storefront-digicha .store-hero-art {
+  min-height: 365px;
+}
+
+.storefront-digicha .digi-orbit {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(255, 115, 164, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.storefront-digicha .digi-orbit-one {
+  width: 350px;
+  height: 350px;
+  top: 3%;
+  left: 5%;
+}
+
+.storefront-digicha .digi-orbit-two {
+  width: 270px;
+  height: 270px;
+  top: 14%;
+  left: 15%;
+  border-style: dashed;
+  opacity: 0.72;
+}
+
+.storefront-digicha .store-hero-art > img {
+  width: min(455px, 84%);
+  border: 1px solid rgba(255, 142, 184, 0.52);
+  border-radius: 8px;
+  background: #fff8fb;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35), 0 0 0 9px rgba(240, 64, 130, 0.08);
+  transform: rotate(1.5deg);
+}
+
+.storefront-digicha .store-hero-art > span:last-child {
+  right: 0;
+  bottom: 6px;
+  border: 1px solid rgba(255, 142, 184, 0.35);
+  border-radius: 3px;
+  background: #25171e;
+  color: #ffabc8;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+}
+
+.digi-category-section {
+  padding: 50px 0 55px;
+  background: #fff;
+}
+
+.category-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.category-section-heading h2 {
+  margin: 5px 0 0;
+  color: var(--shop-ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.9rem, 3.7vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.15;
+}
+
+.category-section-heading > p {
+  max-width: 445px;
+  margin: 0;
+  color: var(--shop-muted);
+  font-size: 0.83rem;
+}
+
+.digi-category-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.digi-category-card {
+  display: flex;
+  min-height: 148px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 17px;
+  border: 1px solid rgba(181, 29, 92, 0.15);
+  border-radius: 5px;
+  background: linear-gradient(145deg, #fff, #fff5f9);
+  color: var(--shop-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.digi-category-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(220, 46, 114, 0.45);
+  background: #fff0f6;
+  box-shadow: 0 12px 30px rgba(82, 26, 48, 0.08);
+}
+
+.digi-category-symbol {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffe1ec;
+  color: #c12264;
+  font-size: 1rem;
+}
+
+.digi-category-name {
+  margin-top: 14px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.digi-category-count {
+  color: #8b6876;
+  font-size: 0.7rem;
+}
+
+.storefront-digicha .featured-section {
+  padding-top: 56px;
+  background: #fffafd;
+}
+
+.storefront-digicha .store-section-heading h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.9rem, 3.7vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.storefront-digicha .catalog-section {
+  background: #fff2f7;
+}
+
+.storefront-digicha .store-product-card {
+  overflow: hidden;
+  border-radius: 7px;
+  border-color: rgba(112, 35, 63, 0.15);
+  background: #fff;
+  box-shadow: 0 9px 25px rgba(67, 22, 41, 0.055);
+}
+
+.storefront-digicha .store-product-card:hover {
+  box-shadow: 0 18px 42px rgba(67, 22, 41, 0.12);
+}
+
+.storefront-digicha .store-product-image-wrap {
+  border-radius: 3px;
+  background: linear-gradient(145deg, #fff0f6, #fff8fb);
+}
+
+.storefront-digicha .product-badge.sample-badge {
+  border-color: rgba(220, 46, 114, 0.22);
+  background: rgba(255, 235, 243, 0.96);
+  color: #97204e;
+}
+
+.storefront-digicha .product-availability.is-sample {
+  color: #a02a58;
+}
+
+.storefront-digicha .store-mode {
+  border-color: rgba(181, 29, 92, 0.18);
+  background: #fff9fb;
+  color: #824258;
+}
+
+.storefront-digicha .store-search-field,
+.storefront-digicha .store-filter-field {
+  border-radius: 6px;
+}
+
+.storefront-digicha .store-deals-grid .deal-card {
+  border-radius: 7px;
+  background: linear-gradient(135deg, #fff0f6, #ffe1ed);
+}
+
+.storefront-digicha .store-section:not(.featured-section):not(.catalog-section):not(.deals-section) {
+  background-color: var(--shop-page);
+}
+
+.storefront-digicha .cart-section {
+  background: #fff2f7;
+}
+
+.storefront-digicha .checkout-section {
+  background: #fffafd;
+}
+
+.storefront-digicha .account-section {
+  background: #fff6f9;
+}
+
+.storefront-digicha .store-footer {
+  color: #fff7fa;
+}
+
+.storefront-digicha .store-footer .store-brand-name {
+  color: #fff;
+}
+
+.storefront-digicha .store-footer .store-brand-mark {
+  background: linear-gradient(145deg, #f85b98, #d72269);
+  color: #fff;
+}
+
+.storefront-digicha .store-footer-inner p {
+  color: rgba(255, 246, 249, 0.65);
+}
+
+.storefront-digicha .store-footer-inner > a:last-child {
+  color: #ff9fc2;
+}
+
+.storefront-digicha .checkout-notice {
+  border-color: rgba(218, 53, 115, 0.28);
+  background: #fff0f6;
+  color: #842447;
+}
+
+@media (max-width: 980px) {
+  .digi-category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .storefront-digicha .store-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block: 38px 30px;
+  }
+
+  .storefront-digicha .store-hero-art {
+    min-height: 265px;
+  }
+
+  .shop-promo-ribbon .store-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .storefront-digicha .store-hero h1 {
+    font-size: clamp(2.7rem, 11.8vw, 4.3rem);
+  }
+}
+
+@media (max-width: 650px) {
+  .category-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .digi-category-section {
+    padding-block: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .digi-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .digi-category-card {
+    min-height: 130px;
+    padding: 13px;
+  }
+
+  .digi-promo-ribbon {
+    font-size: 0.59rem;
+    letter-spacing: 0.1em;
+  }
+
+  .digi-promo-ribbon .store-container {
+    width: calc(100% - 26px);
+    gap: 12px;
+  }
+}

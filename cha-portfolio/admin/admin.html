@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#211d38" />
+    <meta name="description" content="Private, staff-only shop management for the DigiCha and Mochajaki storefronts." />
+    <title>Shop admin | Cha’s portfolio</title>
+    <link rel="stylesheet" href="../shared/storefront.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <script src="../shared/shop-api.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body class="admin-page">
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <a class="admin-brand" href="../portfolio/" aria-label="Return to Cha’s portfolio">
+          <span class="admin-brand-mark" aria-hidden="true">C<span>✦</span></span>
+          <span><strong>Shop Admin</strong><small>Private workspace</small></span>
+        </a>
+        <div class="admin-header-actions">
+          <label class="admin-shop-picker">
+            <span>Shop</span>
+            <select id="admin-shop-select" aria-label="Choose shop">
+              <option value="digicha">DigiCha</option>
+              <option value="mochajaki">Mochajaki Snack Corner Gasang</option>
+            </select>
+          </label>
+          <span class="admin-session" id="admin-session-label">Not signed in</span>
+          <button class="admin-button admin-button-quiet" id="admin-signout" type="button" hidden>Sign out</button>
+          <a class="admin-portfolio-link" href="../portfolio/">Portfolio <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-intro">
+        <div>
+          <p class="admin-eyebrow">Separate shop identities · staff-only controls</p>
+          <h1 id="admin-title">Shop workspace</h1>
+          <p id="admin-description">Manage catalog details, review incoming orders, and configure shop-specific rules.</p>
+        </div>
+        <span class="admin-role-badge" id="admin-role-badge">Staff access required</span>
+      </section>
+
+      <section class="admin-panel admin-access-panel" id="admin-access-panel" aria-labelledby="access-title">
+        <div class="admin-panel-heading">
+          <div>
+            <p class="admin-eyebrow">Supabase Auth</p>
+            <h2 id="access-title">Sign in to your shop account</h2>
+          </div>
+        </div>
+        <p class="admin-message" id="admin-access-message" role="status" aria-live="polite">
+          Only an authenticated account with an active staff membership for this shop can open the admin workspace.
+        </p>
+        <form class="admin-form-grid admin-login-form" id="admin-login-form">
+          <label class="admin-field">
+            <span>Email</span>
+            <input name="email" type="email" maxlength="254" autocomplete="email" required />
+          </label>
+          <label class="admin-field">
+            <span>Password</span>
+            <input name="password" type="password" maxlength="128" autocomplete="current-password" required />
+          </label>
+          <button class="admin-button admin-button-primary" type="submit">Sign in</button>
+        </form>
+        <p class="admin-help">
+          First connect Supabase and create an account from a shop page. A trusted project owner must
+          grant that account a row in <code>staff_members</code> before admin access is allowed.
+          See <a href="../README.md#grant-shop-admin-access">the setup guide</a>.
+        </p>
+      </section>
+
+      <div class="admin-workspace" id="admin-workspace" hidden>
+        <div class="admin-callout" id="admin-demo-notice" hidden>
+          <strong>Demo shop</strong>
+          <span>Sample catalog entries and example prices are not live offers. Development orders are unpaid.</span>
+        </div>
+        <p class="admin-message" id="admin-status" role="status" aria-live="polite"></p>
+
+        <nav class="admin-anchor-nav" aria-label="Shop management sections">
+          <a href="#admin-overview">Overview</a>
+          <a href="#admin-products">Products</a>
+          <a href="#admin-orders">Orders</a>
+          <a href="#admin-promotions">Promotions</a>
+          <a href="#admin-settings">Shop settings</a>
+        </nav>
+
+        <section class="admin-section" id="admin-overview" aria-labelledby="overview-title">
+          <div class="admin-section-heading">
+            <div>
+              <p class="admin-eyebrow">Shop-specific snapshot</p>
+              <h2 id="overview-title">Overview</h2>
+            </div>
+            <button class="admin-button admin-button-secondary" id="admin-refresh" type="button">Refresh data</button>
+          </div>
+          <div class="admin-stat-grid" id="admin-stat-grid"></div>
+          <div class="admin-panel admin-checklist">
+            <h3>Before accepting real orders</h3>
+            <ul>
+              <li>Replace every sample product, price, and placeholder image.</li>
+              <li>Confirm the real fulfillment methods and what details they require.</li>
+              <li>Configure at least one valid payment method. A development-unpaid method is not a live payment.</li>
+              <li>Verify customer sign-in, order-status updates, and totals in a test environment.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="admin-section" id="admin-products" aria-labelledby="products-title">
+          <div class="admin-section-heading">
+            <div>
+              <p class="admin-eyebrow">Shop catalog</p>
+              <h2 id="products-title">Products</h2>
+            </div>
+            <button class="admin-button admin-button-primary" id="admin-new-product" type="button">Add product</button>
+          </div>
+          <p class="admin-section-note">
+            Product options use JSON so you can control sizes, add-ons, and option price adjustments.
+            Images are entered as a root-relative project path or an HTTPS URL; this panel does not upload image files.
+          </p>
+          <form class="admin-panel admin-editor-form" id="admin-product-form" hidden>
+            <div class="admin-editor-heading">
+              <div>
+                <p class="admin-eyebrow">Catalog editor</p>
+                <h3 id="admin-product-form-title">Add a product</h3>
+              </div>
+              <button class="admin-button admin-button-quiet" data-cancel-product type="button">Close</button>
+            </div>
+            <input name="productId" type="hidden" />
+            <div class="admin-form-grid">
+              <label class="admin-field">
+                <span>Product name</span>
+                <input name="name" type="text" minlength="2" maxlength="140" required />
+              </label>
+              <label class="admin-field">
+                <span>Price (shop currency)</span>
+                <input name="price" type="number" min="0" max="99999999.99" step="0.01" required />
+              </label>
+              <label class="admin-field">
+                <span>Category</span>
+                <select name="categoryId"><option value="">No category</option></select>
+              </label>
+              <label class="admin-field">
+                <span>Display order</span>
+                <input name="displayOrder" type="number" min="0" max="100000" step="1" value="0" />
+              </label>
+              <label class="admin-field admin-field-wide">
+                <span>Description</span>
+                <textarea name="description" maxlength="2000" rows="3"></textarea>
+              </label>
+              <label class="admin-field admin-field-wide">
+                <span>Image path or HTTPS URL <small>(leave blank to use the empty image slot)</small></span>
+                <input name="imageUrl" type="text" maxlength="1000" placeholder="/assets/images/shops/your-image.jpg" />
+              </label>
+              <label class="admin-field admin-field-wide">
+                <span>Product options JSON</span>
+                <textarea name="options" rows="9" spellcheck="false">[]</textarea>
+                <small>Example: a Small option can use <code>price_delta: 0, display_price: 50</code>; a Big option can use <code>price_delta: 20, display_price: 70</code>. The server totals use price_delta; display_price is the customer-facing PHP label.</small>
+              </label>
+              <div class="admin-checkbox-row admin-field-wide">
+                <label><input name="available" type="checkbox" checked /> Available to order</label>
+                <label><input name="featured" type="checkbox" /> Recommend as featured</label>
+                <label><input name="sample" type="checkbox" /> Mark as demo sample</label>
+              </div>
+            </div>
+            <p class="admin-message" data-product-feedback role="status" aria-live="polite"></p>
+            <div class="admin-form-actions">
+              <button class="admin-button admin-button-primary" type="submit">Save product</button>
+              <button class="admin-button admin-button-secondary" data-cancel-product type="button">Cancel</button>
+            </div>
+          </form>
+          <div class="admin-card-list" id="admin-products-list">
+            <p class="admin-empty">Loading catalog…</p>
+          </div>
+        </section>
+
+        <section class="admin-section" id="admin-orders" aria-labelledby="orders-title">
+          <div class="admin-section-heading">
+            <div>
+              <p class="admin-eyebrow">Customer requests</p>
+              <h2 id="orders-title">Recent orders</h2>
+            </div>
+          </div>
+          <p class="admin-section-note">Payment status is read-only here. Online payments are updated only after server-side payment-provider verification.</p>
+          <div class="admin-card-list" id="admin-orders-list">
+            <p class="admin-empty">Loading orders…</p>
+          </div>
+        </section>
+
+        <section class="admin-section" id="admin-promotions" aria-labelledby="promotions-title">
+          <div class="admin-section-heading">
+            <div>
+              <p class="admin-eyebrow">Verified offer rules</p>
+              <h2 id="promotions-title">Promotions</h2>
+            </div>
+            <button class="admin-button admin-button-primary" id="admin-new-promotion" type="button">Add promotion</button>
+          </div>
+          <p class="admin-section-note">Only active, in-date promotions are shown to customers; the server checks eligibility again when quoting and saving an order.</p>
+          <form class="admin-panel admin-editor-form" id="admin-promotion-form" hidden>
+            <div class="admin-editor-heading">
+              <div>
+                <p class="admin-eyebrow">Promotion editor</p>
+                <h3>Create a promotion</h3>
+              </div>
+              <button class="admin-button admin-button-quiet" data-cancel-promotion type="button">Close</button>
+            </div>
+            <div class="admin-form-grid">
+              <label class="admin-field">
+                <span>Name</span>
+                <input name="name" type="text" minlength="1" maxlength="140" required />
+              </label>
+              <label class="admin-field">
+                <span>Coupon code <small>(leave blank for automatic offer)</small></span>
+                <input name="code" type="text" maxlength="32" pattern="[A-Za-z0-9_-]{2,32}" placeholder="OPTIONAL-CODE" />
+              </label>
+              <label class="admin-field">
+                <span>Discount type</span>
+                <select name="discountType"><option value="percent">Percentage</option><option value="fixed">Fixed amount</option></select>
+              </label>
+              <label class="admin-field">
+                <span>Discount value</span>
+                <input name="discountValue" type="number" min="0.01" max="100000" step="0.01" required />
+              </label>
+              <label class="admin-field">
+                <span>Applies to</span>
+                <select name="appliesTo"><option value="order">Whole order</option><option value="product">Specific product</option><option value="category">Specific category</option></select>
+              </label>
+              <label class="admin-field" data-promotion-target="product" hidden>
+                <span>Eligible product</span>
+                <select name="productId"><option value="">Choose a product</option></select>
+              </label>
+              <label class="admin-field" data-promotion-target="category" hidden>
+                <span>Eligible category</span>
+                <select name="categoryId"><option value="">Choose a category</option></select>
+              </label>
+              <label class="admin-field">
+                <span>Minimum subtotal</span>
+                <input name="minimumOrderTotal" type="number" min="0" step="0.01" value="0" />
+              </label>
+              <label class="admin-field">
+                <span>Maximum discount <small>(optional)</small></span>
+                <input name="maximumDiscount" type="number" min="0" step="0.01" />
+              </label>
+              <label class="admin-field">
+                <span>Starts at <small>(your local time)</small></span>
+                <input name="startsAt" type="datetime-local" />
+              </label>
+              <label class="admin-field">
+                <span>Ends at <small>(optional)</small></span>
+                <input name="endsAt" type="datetime-local" />
+              </label>
+              <label class="admin-field">
+                <span>Maximum total redemptions <small>(optional)</small></span>
+                <input name="maximumRedemptions" type="number" min="1" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Maximum per customer <small>(optional)</small></span>
+                <input name="maximumRedemptionsPerCustomer" type="number" min="1" step="1" />
+              </label>
+              <label class="admin-field admin-field-wide">
+                <span>Description</span>
+                <textarea name="description" maxlength="1000" rows="2"></textarea>
+              </label>
+              <label class="admin-check-label"><input name="isActive" type="checkbox" checked /> Activate after saving</label>
+            </div>
+            <p class="admin-message" data-promotion-feedback role="status" aria-live="polite"></p>
+            <div class="admin-form-actions">
+              <button class="admin-button admin-button-primary" type="submit">Save promotion</button>
+              <button class="admin-button admin-button-secondary" data-cancel-promotion type="button">Cancel</button>
+            </div>
+          </form>
+          <div class="admin-card-list" id="admin-promotions-list">
+            <p class="admin-empty">Loading promotions…</p>
+          </div>
+        </section>
+
+        <section class="admin-section" id="admin-settings" aria-labelledby="settings-title">
+          <div class="admin-section-heading">
+            <div>
+              <p class="admin-eyebrow">Per-shop configuration</p>
+              <h2 id="settings-title">Shop settings</h2>
+            </div>
+          </div>
+          <div class="admin-callout admin-callout-warning">
+            <strong>Changing demo mode is protected.</strong>
+            <span>The server will refuse to disable it while sample products remain or when there is no enabled fulfillment and payment option. Stripe secrets are never entered here.</span>
+          </div>
+          <form class="admin-panel admin-editor-form" id="admin-settings-form">
+            <div class="admin-form-grid">
+              <label class="admin-field">
+                <span>Currency (ISO 4217)</span>
+                <input name="currency" type="text" minlength="3" maxlength="3" pattern="[A-Za-z]{3}" required />
+              </label>
+              <label class="admin-check-label"><input name="isDemo" type="checkbox" /> Keep this shop in demo mode</label>
+              <label class="admin-field admin-field-wide">
+                <span>Fulfillment options JSON</span>
+                <textarea name="fulfillmentOptions" rows="7" spellcheck="false" required></textarea>
+                <small>Example only: [{"id":"pickup","label":"Pickup","enabled":true,"requires_details":false}]</small>
+              </label>
+              <label class="admin-field admin-field-wide">
+                <span>Manual payment methods JSON</span>
+                <textarea name="paymentMethods" rows="7" spellcheck="false" required></textarea>
+                <small>Example only: [{"id":"cash-on-delivery","label":"Cash on delivery","enabled":true,"instructions":"Replace with verified instructions."}]</small>
+              </label>
+            </div>
+            <p class="admin-section-note">
+              The JSON examples above are not enabled payment or fulfillment services. Stripe Checkout,
+              when selected, is configured with secret keys and a webhook in <code>backend/.env</code>.
+            </p>
+            <p class="admin-message" data-settings-feedback role="status" aria-live="polite"></p>
+            <div class="admin-form-actions">
+              <button class="admin-button admin-button-primary" type="submit">Save shop settings</button>
+            </div>
+          </form>
+        </section>
+
+        <footer class="admin-footer">
+          <p>Admin APIs require an authenticated Supabase user and an active staff membership for the selected shop.</p>
+          <a href="../portfolio/">Return to the portfolio</a>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

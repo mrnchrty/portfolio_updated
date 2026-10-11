@@ -1,0 +1,25 @@
+{
+  "name": "cha-portfolio-ordering-api",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Express API for Cha's portfolio, separate per-shop Supabase Auth and ordering, staff administration, and optional Stripe Checkout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check services/supabase.js && node --check middleware/auth.js && node --check middleware/admin.js && node --check middleware/errors.js && node --check routes/auth.js && node --check routes/shops.js && node --check routes/admin.js && node --check controllers/authController.js && node --check controllers/shopController.js && node --check controllers/adminController.js && node --check controllers/paymentController.js && node --check tests/supabase-isolation.test.js && node --check ../shared/shop-api.js && node --check ../shared/storefront.js && node --check ../shared/social-links.js && node --check ../portfolio/home/home.js && node --check ../admin/admin.js && node --check ../portfolio/about/about.js && node --check ../portfolio/projects/projects.js && node --check ../portfolio/mabini/mabini.js && node --check ../digicha-shop/digicha.js && node --check ../mochajaki-shop/mochajaki.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "stripe": "^18.5.0"
+  }
+}
