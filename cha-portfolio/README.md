@@ -50,7 +50,7 @@ Requirements: Node.js 18 or newer, npm, and **two separate Supabase projects**�
 4. In the **DigiCha Supabase project's** SQL Editor:
    - For a new project, run `database/schema.sql`.
    - If this is an existing project created with the older schema in this package, back up the database, run `database/migrations/001_upgrade_existing_shop_schema.sql`, then run `database/schema.sql`.
-   - Run `database/seed-digicha.sql` for DigiCha’s initial shop row and product placeholders.
+   - Run `database/seed-digicha.sql` for DigiCha’s shop row and editable sample catalog.
 5. Repeat step 4 in the **Mochajaki Supabase project**, using `database/seed-mochajaki.sql` instead.
 6. Start Express from the `backend` folder:
 
@@ -123,10 +123,12 @@ A staff member manages that shop’s products, order fulfillment status, promoti
 - Customer accounts use the selected project’s Supabase Auth with server-managed HttpOnly cookies named separately per shop. Order history is restricted to the signed-in customer in that project. Admin order-state changes update only that shop’s database.
 - Manual GCash, Maya, and Other methods create **unpaid** orders. Add verified account instructions to each shop’s settings only when ready; the admin cannot mark manual orders paid. This project does not receive or verify manual transfers.
 - The per-shop seed files have no promotions. Only configured, active, in-date offers appear; fixed discount amounts, minimums, and totals use the shop currency (seeded as PHP) and are rechecked by the server.
-- Mochajaki’s seeded Pasta catalog reflects the names and Small/Big prices you provided: Lasagna ₱50/₱70, Palabok ₱40/₱60, Bake Mac ₱50/₱70, and Mac & Cheese ₱50/₱70. Size is required and the server recalculates the selected price.
-- DigiCha’s four requested product names appear with “Price to be confirmed” and cannot be ordered until you enter actual prices/options and set availability. They are marked as setup samples so they cannot accidentally be sold as priced products.
-- Storefront suggestions show available products, prefer shop-featured items, and avoid items already in the current cart when possible. They use catalog/cart state only, not fabricated sales history or customer profiling.
-- Product image paths remain blank image-slot SVGs—not product artwork. No active discount values are seeded because no offer amounts or terms were provided.
+- Mochajaki’s Pasta catalog preserves the names and Small/Big prices you provided: Lasagna ₱50/₱70, Palabok ₱40/₱60, Bake Mac ₱50/₱70, and Mac & Cheese ₱50/₱70. New sample categories add three beverages, three snacks, and three chicken-with-rice meal ideas. Their prices are suggested PHP amounts for owner review; the new rows are marked as samples and cannot be sold as live products by default.
+- DigiCha’s editable sample catalog includes at least three listings each for stickers, mugs, keychains, tarpaulins, and certificates, plus the previously requested personalized notebook and pen/mug set. The sample prices/options are suggestions, and product specifications and images remain replaceable.
+- DigiCha product options demonstrate editable size, finish, print, and layout choices; its checkout notes field accepts the customer’s written personalization/fulfillment details. Do not promise artwork upload; files and final proofs must be arranged with the shop.
+- Both seeds keep each shop in demo mode; newly suggested rows are `is_sample`. Before launch, review product names/prices/options and replace image slots, mark only confirmed products as non-samples, configure real fulfillment/payment settings, and turn off demo mode. Manual payments still remain unpaid until verified separately.
+- Storefront suggestions show available catalog rows, prefer shop-featured items, and avoid items already in the current cart when possible. They use catalog/cart state only, not fabricated sales history or customer profiling.
+- Product-image paths still point to blank, clearly replaceable image-slot SVGs—not product artwork. No active discount values are seeded because no offer amounts or terms were provided.
 
 ### Optional Stripe Checkout
 
@@ -161,7 +163,7 @@ Suggested paths already called out in the HTML:
 
 For shop products, upload the image to the matching project’s public storage bucket or another HTTPS host and set `products.image_url` in that shop database. A root-relative project path such as `/assets/images/shops/your-product.jpg` also works. The admin editor stores a path/URL but does not upload image files. Add useful alternative text when replacing portfolio `<img>` elements. Preserve certificate proportions (`object-fit: contain`).
 
-The supplied `assets/images/mochajaki-menu-reference.png` is kept from the project and shown in a collapsible section on Mochajaki. The pasta items and prices in the updated catalog come from the values you provided, not from interpreting the reference image. Confirm current availability and fulfillment details before accepting live orders.
+The supplied `assets/images/mochajaki-menu-reference.png` is kept from the project and shown in a collapsible section on Mochajaki. The Pasta names and Small/Big prices in the updated catalog come from the values you provided, not from interpreting the reference image. The additional drink, snack, and chicken-rice listings use clearly marked sample names/prices for owner review. Confirm final catalog details, availability, and fulfillment before accepting live orders.
 
 For a résumé file, place your real PDF at `assets/documents/cha-resume.pdf` only if you want to retain it in your project records. This site intentionally has no standalone resume/download link. Resume information belongs in About Me.
 

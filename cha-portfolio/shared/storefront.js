@@ -512,7 +512,7 @@
             <span class="store-product-category">${html(productCategoryName(product))}</span>
             <h3 class="store-product-title">${html(product.name)}</h3>
             <p class="store-product-description">${html(product.description || 'Product details will be added by the shop owner.')}</p>
-            <span class="product-availability${productIsAvailable ? '' : ' is-unavailable'}">${pricePending ? 'Price to be confirmed' : (productIsAvailable ? 'Available to order' : 'Currently unavailable')}</span>
+            <span class="product-availability${product.is_sample ? ' is-sample' : (productIsAvailable ? '' : ' is-unavailable')}">${pricePending ? 'Price to be confirmed' : (product.is_sample ? 'Sample listing · confirm before live orders' : (productIsAvailable ? 'Available to order' : 'Currently unavailable'))}</span>
             <div class="product-card-footer">
               <strong class="product-price">${priceLabel}</strong>
               <button class="store-button store-button-primary" type="button" data-product-action="${primaryAction}" data-id="${productId}" ${primaryDisabled}>${primaryLabel}</button>
@@ -910,7 +910,7 @@
       if (!elements.fulfillmentDetails) return;
       elements.fulfillmentDetails.required = Boolean(option?.requires_details);
       if (option?.details_label) elements.fulfillmentDetails.placeholder = option.details_label;
-      else elements.fulfillmentDetails.placeholder = 'Add only the details requested by this shop.';
+      else elements.fulfillmentDetails.placeholder = elements.fulfillmentDetails.dataset.placeholder || 'Add only the details requested by this shop.';
       updateCheckoutAvailability();
     }
 
@@ -1199,7 +1199,7 @@
         ? '<p class="product-availability is-unavailable">Price to be confirmed. Ordering is not available yet.</p>'
         : (productIsAvailable ? '' : '<p class="product-availability is-unavailable">This product is currently unavailable.</p>');
       const sampleNote = product.is_sample && !pricePending
-        ? '<p class="checkout-notice">DEMO SAMPLE: replace this example product, price, and image before accepting real orders.</p>'
+        ? '<p class="checkout-notice">SAMPLE LISTING: the name, price, and options are suggestions; confirm specifications and replace the image before accepting real orders.</p>'
         : '';
       const basePrice = Number(product.price);
       const basePriceLabel = pricePending ? 'Price to be confirmed' : `${groups.length ? 'From ' : ''}${money(basePrice)}`;

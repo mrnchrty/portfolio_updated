@@ -634,6 +634,10 @@ body.storefront [hidden] {
   color: #9b5454;
 }
 
+.product-availability.is-sample {
+  color: var(--shop-muted);
+}
+
 .product-card-actions {
   display: flex;
   gap: 7px;

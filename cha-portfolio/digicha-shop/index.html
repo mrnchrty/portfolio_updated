@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#17142d" />
     <meta
       name="description"
-      content="Browse DigiCha personalized notebooks, tarpulin, certificates, and personalized pen and mug products."
+      content="Browse DigiCha sample custom stickers, mugs, keychains, tarpaulins, certificates, and personalized gifts."
     />
-    <title>DigiCha | Personalized &amp; Print Goods</title>
+    <title>DigiCha | Custom Prints &amp; Gifts</title>
     <link rel="stylesheet" href="../shared/storefront.css" />
     <link rel="stylesheet" href="digicha.css" />
     <script src="../shared/shop-api.js" defer></script>
@@ -43,15 +43,24 @@
       </div>
     </header>
 
+    <div class="shop-promo-ribbon digi-promo-ribbon" aria-label="DigiCha product categories">
+      <div class="store-container">
+        <span>MADE PERSONAL</span><span aria-hidden="true">✦</span>
+        <span>CUSTOM STICKERS</span><span aria-hidden="true">✦</span>
+        <span>PRINTED GIFTS</span><span aria-hidden="true">✦</span>
+        <span>ONE-OF-A-KIND DETAILS</span>
+      </div>
+    </div>
+
     <main class="store-main" data-shop-app data-shop="digicha">
       <section class="store-hero" aria-labelledby="store-title">
         <div class="store-hero-inner">
           <div class="store-hero-copy">
-            <span class="store-kicker">Personalized &amp; print items</span>
-            <h1 id="store-title">Make it <span>personal.</span></h1>
+            <span class="store-kicker">Custom details, made yours</span>
+            <h1 id="store-title">Little things.<br /><span>Big meaning.</span></h1>
             <p>
-              Browse personalized notebooks and pen &amp; mug items, plus tarpulin and certificates.
-              Prices and order options are being finalized, so DigiCha items are not yet available to order.
+              Browse sample stickers, mugs, keychains, tarpaulins, certificates, and personalized gifts.
+              Choose a style, then share the details you want customized.
             </p>
             <div class="store-hero-actions">
               <a class="store-button store-button-primary" href="#catalog">Browse the shop <span aria-hidden="true">↓</span></a>
@@ -66,12 +75,41 @@
           <div class="store-hero-art">
             <span class="digi-orbit digi-orbit-one" aria-hidden="true"></span>
             <span class="digi-orbit digi-orbit-two" aria-hidden="true"></span>
-            <!-- Replace with your DigiCha brand banner at assets/images/shops/digicha-banner.jpg. -->
+            <!-- Replace this clearly marked slot with DigiCha's supplied brand image when ready. -->
             <img
               src="../assets/images/banner-digicha.svg"
-              alt="DigiCha banner artwork placeholder"
+              alt="Replaceable DigiCha brand-image placeholder"
             />
-            <span class="digi-art-note">D / 01 · PERSONALIZED ITEMS</span>
+            <span class="digi-art-note">DIGICHA · PERSONALIZED GOODS</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="digi-category-section" aria-labelledby="digi-category-title">
+        <div class="store-container">
+          <div class="category-section-heading">
+            <div>
+              <span class="store-kicker">Find your kind of custom</span>
+              <h2 id="digi-category-title">Shop by category</h2>
+            </div>
+            <p>Sample product concepts and suggested PHP prices. Final sizes, materials, artwork, and pricing are for owner review.</p>
+          </div>
+          <div class="digi-category-grid">
+            <button class="digi-category-card" type="button" data-shop-category="Stickers">
+              <span class="digi-category-symbol" aria-hidden="true">✦</span><span class="digi-category-name">Stickers</span><span class="digi-category-count">3 sample designs</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Mugs">
+              <span class="digi-category-symbol" aria-hidden="true">◒</span><span class="digi-category-name">Mugs</span><span class="digi-category-count">3 sample styles</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Keychains">
+              <span class="digi-category-symbol" aria-hidden="true">⌘</span><span class="digi-category-name">Keychains</span><span class="digi-category-count">3 sample styles</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Tarpulins">
+              <span class="digi-category-symbol" aria-hidden="true">▤</span><span class="digi-category-name">Tarpulins</span><span class="digi-category-count">3 sample sizes</span>
+            </button>
+            <button class="digi-category-card" type="button" data-shop-category="Certificates">
+              <span class="digi-category-symbol" aria-hidden="true">✧</span><span class="digi-category-name">Certificates</span><span class="digi-category-count">3 sample prints</span>
+            </button>
           </div>
         </div>
       </section>
@@ -80,10 +118,10 @@
         <div class="store-container">
           <div class="store-section-heading">
             <div>
-              <span class="store-kicker">Shop suggestions</span>
-              <h2 id="featured-title">Suggestions for you</h2>
+              <span class="store-kicker">A few ideas to start</span>
+              <h2 id="featured-title">Sample product ideas</h2>
             </div>
-            <p>Suggestions use available products and your current cart, not purchase history.</p>
+            <p>Suggestions use the sample catalog and your current cart, not purchase history.</p>
           </div>
           <div class="store-product-grid" id="suggestion-grid">
             <p class="store-empty">Suggestions will appear after products are available to order.</p>
@@ -224,12 +262,13 @@
                   </select>
                 </label>
                 <label class="store-field full-field">
-                  <span>Fulfillment details</span>
+                  <span>Customization &amp; fulfillment details <small>(optional)</small></span>
                   <textarea
                     id="fulfillment-details"
                     name="fulfillmentDetails"
                     maxlength="1000"
-                    placeholder="Add only the details requested by this shop."
+                    data-placeholder="For each item, add the exact name or text, preferred colors, and any customization notes. Confirm artwork and fulfillment with DigiCha."
+                    placeholder="For each item, add the exact name or text, preferred colors, and any customization notes. Confirm artwork and fulfillment with DigiCha."
                   ></textarea>
                 </label>
               </div>

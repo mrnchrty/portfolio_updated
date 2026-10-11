@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#f6eddd" />
     <meta
       name="description"
-      content="Browse Mochajaki Snack Corner Gasang pasta menu and prices in PHP."
+      content="Browse Mochajaki Snack Corner Gasang pasta, beverages, homemade snacks, and chicken-with-rice menu samples with prices in PHP."
     />
-    <title>Mochajaki Snack Corner Gasang | Pasta Menu</title>
+    <title>Mochajaki Snack Corner Gasang | Food &amp; Drinks</title>
     <link rel="stylesheet" href="../shared/storefront.css" />
     <link rel="stylesheet" href="mochajaki.css" />
     <script src="../shared/shop-api.js" defer></script>
@@ -43,15 +43,23 @@
       </div>
     </header>
 
+    <div class="shop-promo-ribbon mocha-promo-ribbon" aria-label="Mochajaki menu categories">
+      <div class="store-container">
+        <span>PASTA &amp; MORE</span><span aria-hidden="true">✦</span>
+        <span>COFFEE · MILK TEA · SHAKES</span><span aria-hidden="true">✦</span>
+        <span>SNACKS &amp; CHICKEN RICE MEALS</span>
+      </div>
+    </div>
+
     <main class="store-main" data-shop-app data-shop="mochajaki">
       <section class="store-hero" aria-labelledby="store-title">
         <div class="store-hero-inner">
           <div class="store-hero-copy">
-            <span class="store-kicker">Mochajaki Snack Corner Gasang</span>
-            <h1 id="store-title">Find your pasta <span>favorite.</span></h1>
+            <span class="store-kicker">Mochajaki Snack Corner · Gasang</span>
+            <h1 id="store-title">Good food.<br /><span>Good mood.</span></h1>
             <p>
-              Pick Lasagna, Palabok, Bake Mac, or Mac &amp; Cheese, then choose Small or Big.
-              Menu prices are shown in Philippine pesos (PHP).
+              Find pasta favorites, coffee, milk tea, milkshakes, homemade snacks, and chicken-with-rice meals.
+              Browse the menu and its suggested sample prices in Philippine pesos.
             </p>
             <div class="store-hero-actions">
               <a class="store-button store-button-primary" href="#catalog">Browse the menu <span aria-hidden="true">↓</span></a>
@@ -66,12 +74,12 @@
           <div class="store-hero-art">
             <span class="mocha-orbit mocha-orbit-one" aria-hidden="true"></span>
             <span class="mocha-orbit mocha-orbit-two" aria-hidden="true"></span>
-            <!-- Replace with your Mochajaki brand banner at assets/images/shops/mochajaki-banner.jpg. -->
+            <!-- Replace this clearly marked slot with Mochajaki's supplied food/brand image when ready. -->
             <img
               src="../assets/images/banner-mochajaki.svg"
-              alt="Mochajaki banner artwork placeholder"
+              alt="Replaceable Mochajaki brand-image placeholder"
             />
-            <span class="mocha-art-note">GASANG · BATANGAS</span>
+            <span class="mocha-art-note">MOCHAJAKI · GASANG</span>
           </div>
         </div>
       </section>
@@ -83,8 +91,8 @@
             <div class="menu-reference-content">
               <p>
                 This reference image was included with the project. The pasta names and Small/Big
-                prices in the catalog below are the values you provided for Mochajaki; other menu
-                details can be added when you confirm them.
+                prices in the catalog below are the values you provided for Mochajaki. Added drinks,
+                snacks, and chicken-rice listings use clearly marked sample names and suggested prices.
               </p>
               <a href="../assets/images/mochajaki-menu-reference.png" target="_blank" rel="noopener noreferrer">
                 <img
@@ -97,14 +105,72 @@
         </div>
       </section>
 
+      <section class="mocha-menu-highlights" aria-labelledby="mocha-highlights-title">
+        <div class="store-container">
+          <div class="category-section-heading">
+            <div>
+              <span class="store-kicker">A little something for every craving</span>
+              <h2 id="mocha-highlights-title">Menu highlights</h2>
+            </div>
+            <p>Browse sample drink, snack, and chicken-rice ideas. These suggested additions are for owner review, not confirmed offers.</p>
+          </div>
+          <div class="mocha-highlight-grid">
+            <article class="mocha-highlight-card mocha-highlight-pasta">
+              <span class="mocha-highlight-number">01 / COMFORT FOOD</span>
+              <h3>Pasta favourites</h3>
+              <p>Lasagna, Palabok, Bake Mac, and Mac &amp; Cheese. Choose Small or Big.</p>
+              <button type="button" class="mocha-highlight-link" data-shop-category="Pasta">Explore pasta <span aria-hidden="true">↗</span></button>
+            </article>
+            <article class="mocha-highlight-card mocha-highlight-sips">
+              <span class="mocha-highlight-number">02 / SOMETHING TO SIP</span>
+              <h3>Coffee, tea &amp; shakes</h3>
+              <p>Sample menu picks for coffee, milk tea, and milkshakes.</p>
+              <button type="button" class="mocha-highlight-link" data-shop-category="Beverages">Browse drinks <span aria-hidden="true">↗</span></button>
+            </article>
+            <article class="mocha-highlight-card mocha-highlight-meals">
+              <span class="mocha-highlight-number">03 / SNACK TIME</span>
+              <h3>Snacks &amp; chicken rice</h3>
+              <p>Homemade burger, hotdog, fries, and three chicken-with-rice flavors.</p>
+              <button type="button" class="mocha-highlight-link" data-shop-category="Chicken &amp; Rice">See rice meals <span aria-hidden="true">↗</span></button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="mocha-category-section" aria-labelledby="mocha-category-title">
+        <div class="store-container">
+          <div class="category-section-heading">
+            <div>
+              <span class="store-kicker">Pick a category</span>
+              <h2 id="mocha-category-title">What are you in the mood for?</h2>
+            </div>
+            <p>New drink, snack, and chicken-rice prices are suggested PHP samples. The original pasta names and Small/Big prices are preserved.</p>
+          </div>
+          <div class="mocha-category-grid">
+            <button type="button" class="mocha-category-card" data-shop-category="Pasta">
+              <span class="mocha-category-icon" aria-hidden="true">🍝</span><span class="mocha-category-name">Pasta</span><span class="mocha-category-detail">Small &amp; Big</span>
+            </button>
+            <button type="button" class="mocha-category-card" data-shop-category="Beverages">
+              <span class="mocha-category-icon" aria-hidden="true">☕</span><span class="mocha-category-name">Beverages</span><span class="mocha-category-detail">Coffee · milk tea · shakes</span>
+            </button>
+            <button type="button" class="mocha-category-card" data-shop-category="Snacks">
+              <span class="mocha-category-icon" aria-hidden="true">🍟</span><span class="mocha-category-name">Snacks</span><span class="mocha-category-detail">Burger · hotdog · fries</span>
+            </button>
+            <button type="button" class="mocha-category-card" data-shop-category="Chicken &amp; Rice">
+              <span class="mocha-category-icon" aria-hidden="true">🍗</span><span class="mocha-category-name">Chicken &amp; Rice</span><span class="mocha-category-detail">3 sample flavors</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section class="store-section featured-section" aria-labelledby="featured-title">
         <div class="store-container">
           <div class="store-section-heading">
             <div>
-              <span class="store-kicker">Shop suggestions</span>
-              <h2 id="featured-title">Suggestions for you</h2>
+              <span class="store-kicker">From the menu</span>
+              <h2 id="featured-title">Menu picks</h2>
             </div>
-            <p>Suggestions use available menu items and your current cart, not purchase history.</p>
+            <p>Suggestions use the current catalog and cart, not purchase history.</p>
           </div>
           <div class="store-product-grid" id="suggestion-grid">
             <p class="store-empty">Suggestions will appear after the menu loads.</p>
@@ -125,7 +191,7 @@
             <label class="store-search-field">
               <span class="visually-hidden">Search menu</span>
               <span aria-hidden="true">⌕</span>
-              <input id="product-search" type="search" placeholder="Search the pasta menu" autocomplete="off" />
+              <input id="product-search" type="search" placeholder="Search the menu" autocomplete="off" />
             </label>
             <label class="store-filter-field">
               <span class="visually-hidden">Filter by menu category</span>
@@ -377,7 +443,7 @@
           <span class="store-brand-mark" aria-hidden="true">M<span>✦</span></span>
           <span class="store-brand-name">Mochajaki</span>
         </a>
-        <p>Pasta menu · Account, cart, and orders are stored separately from DigiCha.</p>
+        <p>Pasta, drinks, snacks &amp; chicken-rice menu · Account, cart, and orders are stored separately from DigiCha.</p>
         <a href="../portfolio/">Return to Cha’s portfolio</a>
       </div>
     </footer>
