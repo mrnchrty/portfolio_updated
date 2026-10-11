@@ -24,6 +24,13 @@
     }, 2800);
   }
 
+  document.querySelectorAll('.home-social-link[type="button"]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const isSelected = button.classList.toggle('is-selected');
+      button.setAttribute('aria-pressed', String(isSelected));
+    });
+  });
+
   const film = document.querySelector('[data-home-film]');
   if (!film) return;
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#080708" />
+    <meta name="theme-color" content="#f8f2ff" />
     <meta
       name="description"
       content="Maroine Charity De Roy is a Business Analytics student interested in web design, development, data, and creative work."
@@ -15,7 +15,7 @@
     <script src="../shared/social-links.js" defer></script>
     <script src="home/home.js" defer></script>
   </head>
-  <body class="home-page">
+  <body class="portfolio-theme home-page">
     <header class="site-header">
       <div class="nav-shell">
         <a class="brand" href="index.html" aria-label="Cha, home">
@@ -42,6 +42,7 @@
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-sheen" aria-hidden="true"></div>
         <div class="container hero-layout">
           <div class="hero-copy">
             <h1 class="hero-title" id="hero-title">
@@ -59,46 +60,50 @@
 
             <div class="home-socials" role="group" aria-label="Social media profiles">
               <!-- Add real profile URLs to data-social-url when available. Empty entries stay inactive. -->
-              <div
+              <button
+                type="button"
                 class="home-social-link"
                 data-social-name="Facebook"
                 data-social-url=""
-                role="img"
+                aria-pressed="false"
                 aria-label="Facebook profile URL not supplied"
                 title="Facebook profile URL not supplied"
               >
-                <img class="home-social-icon" src="../assets/icons/social-facebook.svg" alt="" aria-hidden="true" />
-              </div>
-              <div
+                <img class="home-social-icon" src="../assets/icons/home-social-facebook.svg" alt="" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
                 class="home-social-link"
                 data-social-name="Instagram"
                 data-social-url=""
-                role="img"
+                aria-pressed="false"
                 aria-label="Instagram profile URL not supplied"
                 title="Instagram profile URL not supplied"
               >
-                <img class="home-social-icon" src="../assets/icons/social-instagram.svg" alt="" aria-hidden="true" />
-              </div>
-              <div
+                <img class="home-social-icon" src="../assets/icons/home-social-instagram.svg" alt="" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
                 class="home-social-link"
                 data-social-name="Telegram"
                 data-social-url=""
-                role="img"
+                aria-pressed="false"
                 aria-label="Telegram profile URL not supplied"
                 title="Telegram profile URL not supplied"
               >
-                <img class="home-social-icon" src="../assets/icons/social-telegram.svg" alt="" aria-hidden="true" />
-              </div>
-              <div
+                <img class="home-social-icon" src="../assets/icons/home-social-telegram.svg" alt="" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
                 class="home-social-link"
                 data-social-name="TikTok"
                 data-social-url=""
-                role="img"
+                aria-pressed="false"
                 aria-label="TikTok profile URL not supplied"
                 title="TikTok profile URL not supplied"
               >
-                <img class="home-social-icon" src="../assets/icons/social-tiktok.svg" alt="" aria-hidden="true" />
-              </div>
+                <img class="home-social-icon" src="../assets/icons/home-social-tiktok.svg" alt="" aria-hidden="true" />
+              </button>
             </div>
 
             <div class="actions hero-actions">

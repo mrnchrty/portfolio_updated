@@ -6,7 +6,7 @@ The three front ends are organized into separate `portfolio/`, `digicha-shop/`, 
 
 ## Project contents
 
-- **Home** — a dark, screenshot-inspired introduction with a cycling role line based on supplied interests, a four-frame looping photo filmstrip, inactive social-profile icons, and the Explore My Work / View About Me links.
+- **Home** — the original pink/lilac/cyan glassmorphism style with a cycling self-description, four-frame looping filmstrip, colored Bootstrap social icons, and the Get to Know Me / Explore My Work links.
 - **About Me** — brief introduction, seven years in Mabini, the supplied interests and games, inactive social-profile placeholders, a resume section, and the requested nine technology icons. Resume material stays here; there is no resume navigation tab or download button.
 - **Projects** — scrollable System Development, Graphics (Publication Materials and Certificates), and Writing galleries. Empty image slots, hover/tap descriptions, and an accessible image-preview dialog are included.
 - **Discover Mabini** — short municipality history, resorts and places to research, the requested café names, map searches, and a reminder to check current local information. The guide does not claim personal visits.
