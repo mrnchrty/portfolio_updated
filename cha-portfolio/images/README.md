@@ -1,6 +1,6 @@
 # Portfolio image paths
 
-Add your own files here; this folder intentionally contains no generated or substitute personal images. Referenced paths:
+Add your own files here; this folder intentionally contains no generated or substitute personal images. The Home filmstrip uses four labeled placeholders until you add your own images at `assets/images/cha-profile-01.jpg` through `cha-profile-04.jpg`. Add alt descriptions in the Home HTML. Other referenced paths:
 
 - `meditrack.png` — MediTrack screenshot
 - `e-gasang.png` — E-Gasang screenshot

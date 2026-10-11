@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="home/home.css" />
     <script src="../shared/common.js" defer></script>
     <script src="../shared/social-links.js" defer></script>
+    <script src="home/home.js" defer></script>
   </head>
   <body class="home-page">
     <header class="site-header">
@@ -45,9 +46,9 @@
           <div class="hero-copy">
             <h1 class="hero-title" id="hero-title">
               <span class="hero-title-line">Hi, I'm Cha</span>
-              <span class="hero-title-line">
+              <span class="hero-title-line hero-role-line">
                 I'm <span class="hero-filled">a</span>
-                <span class="hero-outline">Student</span>
+                <span class="hero-outline" data-role-text>BSIT Student</span>
               </span>
             </h1>
             <p class="hero-intro">
@@ -57,7 +58,7 @@
             </p>
 
             <div class="home-socials" role="group" aria-label="Social media profiles">
-              <!-- Add a real profile URL to data-social-url when available. Empty entries stay inactive. -->
+              <!-- Add real profile URLs to data-social-url when available. Empty entries stay inactive. -->
               <div
                 class="home-social-link"
                 data-social-name="Facebook"
@@ -104,6 +105,57 @@
               <a class="button" href="projects/projects.html">Explore my work</a>
               <a class="button secondary" href="about/about.html">View about me</a>
             </div>
+          </div>
+
+          <div
+            class="home-film"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Four-photo looping filmstrip"
+            data-home-film
+          >
+            <div class="film-perforations" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="home-film-window">
+              <!-- Add your four images at the data-photo-src paths; update each image's data-photo-alt. -->
+              <figure class="home-film-slide is-active" data-film-slide aria-hidden="false">
+                <img
+                  src="../assets/images/cha-film-01-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-01.jpg"
+                  data-photo-alt=""
+                  alt="Photo 1 placeholder; replace with your own image"
+                />
+              </figure>
+              <figure class="home-film-slide" data-film-slide aria-hidden="true">
+                <img
+                  src="../assets/images/cha-film-02-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-02.jpg"
+                  data-photo-alt=""
+                  alt="Photo 2 placeholder; replace with your own image"
+                />
+              </figure>
+              <figure class="home-film-slide" data-film-slide aria-hidden="true">
+                <img
+                  src="../assets/images/cha-film-03-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-03.jpg"
+                  data-photo-alt=""
+                  alt="Photo 3 placeholder; replace with your own image"
+                />
+              </figure>
+              <figure class="home-film-slide" data-film-slide aria-hidden="true">
+                <img
+                  src="../assets/images/cha-film-04-placeholder.svg"
+                  data-photo-src="../assets/images/cha-profile-04.jpg"
+                  data-photo-alt=""
+                  alt="Photo 4 placeholder; replace with your own image"
+                />
+              </figure>
+            </div>
+            <div class="film-perforations" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="film-counter" data-film-counter aria-hidden="true">01 / 04</span>
           </div>
         </div>
       </section>

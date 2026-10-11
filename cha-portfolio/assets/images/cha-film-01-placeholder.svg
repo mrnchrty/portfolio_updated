@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-labelledby="title desc">
+  <title id="title">Photo 1 placeholder</title>
+  <desc id="desc">Replace this numbered frame with your own photo at assets/images/cha-profile-01.jpg.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e66ae9" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#35253b"/>
+    </linearGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="900" rx="34" fill="url(#bg)"/>
+  <rect width="720" height="900" rx="34" fill="url(#grid)"/>
+  <circle cx="570" cy="180" r="112" fill="#fff" opacity=".1"/>
+  <circle cx="150" cy="730" r="165" fill="#fff" opacity=".08"/>
+  <rect x="72" y="130" width="576" height="640" rx="28" fill="#09070b" fill-opacity=".22" stroke="#fff" stroke-opacity=".38" stroke-width="2"/>
+  <text x="360" y="412" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="4" fill="#fff">ADD PHOTO 01</text>
+  <text x="360" y="464" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#fff" fill-opacity=".85">Replace with your own image</text>
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#fff" fill-opacity=".72">assets/images/cha-profile-01.jpg</text>
+</svg>

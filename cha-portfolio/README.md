@@ -6,7 +6,7 @@ The three front ends are organized into separate `portfolio/`, `digicha-shop/`, 
 
 ## Project contents
 
-- **Home** — a dark, screenshot-inspired introduction with an outlined accent headline, four inactive social-profile icons, and the requested Explore My Work / View About Me links.
+- **Home** — a dark, screenshot-inspired introduction with a cycling role line based on supplied interests, a four-frame looping photo filmstrip, inactive social-profile icons, and the Explore My Work / View About Me links.
 - **About Me** — brief introduction, seven years in Mabini, the supplied interests and games, inactive social-profile placeholders, a resume section, and the requested nine technology icons. Resume material stays here; there is no resume navigation tab or download button.
 - **Projects** — scrollable System Development, Graphics (Publication Materials and Certificates), and Writing galleries. Empty image slots, hover/tap descriptions, and an accessible image-preview dialog are included.
 - **Discover Mabini** — short municipality history, resorts and places to research, the requested café names, map searches, and a reminder to check current local information. The guide does not claim personal visits.
@@ -29,7 +29,7 @@ mochajaki-shop/                     Mochajaki standalone storefront files
 admin/                              protected shop admin interface
 shared/                             shared storefront UI and API helpers
 assets/icons/                       technology and platform logo SVGs
-assets/images/                      blank image slots and supplied menu reference
+assets/images/                      replaceable image slots and supplied menu reference
 backend/                             Express API, per-shop auth, admin, and payment logic
 database/                            schema, per-shop seeds, legacy combined seed, migration
 ```
@@ -148,11 +148,12 @@ Without Stripe credentials, checkout only offers configured manual methods and r
 
 ## Replace personal, project, and shop images
 
-The supplied replacement files under `assets/images/` are intentionally blank, labelled slots. No generated product photographs, fabricated project screenshots, or search-result replacement photos are included. Replace the `src` path in the relevant HTML or the product’s `image_url` with your own file.
+The supplied replacement files under `assets/images/` are clearly labelled, replaceable image-slot SVGs. No generated personal photographs, fabricated project screenshots, or search-result replacement photos are included. Replace the Home film photos at their listed paths, or update each `data-photo-src` and `data-photo-alt` in the HTML.
 
 Suggested paths already called out in the HTML:
 
-- Portrait: `assets/images/cha-profile.jpg` (home/about HTML)
+- Home film photos: `assets/images/cha-profile-01.jpg` through `assets/images/cha-profile-04.jpg` (four looping, replaceable slots)
+- About portrait: `assets/images/cha-profile.jpg`
 - Mabini feature: `assets/images/mabini/coastline.jpg`
 - MediTrack: `assets/images/projects/meditrack.png`
 - E-Gasang: `assets/images/projects/e-gasang.png`
@@ -170,7 +171,7 @@ For a résumé file, place your real PDF at `assets/documents/cha-resume.pdf` on
 ## Content and source notes
 
 - Only the navigation items **Home, About Me, Projects, Shop** appear in the portfolio navigation. “Discover Mabini” is an About Me feature and a linked informational page, not a navigation tab.
-- The About Me page uses local SVG technology icons and Bootstrap Icons social marks. No real social-profile URLs were supplied, so those entries remain inactive and can be configured in the page code. The supplied game titles are shown as text-first labels (with a local Roblox mark); no game artwork or additional titles are guessed.
+- Home and About Me use locally bundled Bootstrap Icons social marks. No real social-profile URLs were supplied, so the icons remain inactive until you add URLs to their `data-social-url` attributes. The supplied game titles are shown as text-first labels (with a local Roblox mark); no game artwork or additional titles are guessed.
 - The Mabini page includes the café names **Amaro, Xentea, Alwan, El Raffis, and But First Coffee** as requested. Search links are not a claim that a café is currently at a particular address or open.
 - The history note links to the Municipality of Bauan’s history page: <https://bauan.gov.ph/history/>. Resort/operator references include <https://vivereazure.com/>, the Aiyanar PADI listing at <https://www.padi.com/dive-center/philippines/aiyanar-beach-dive-resort/>, and Camp Netanya’s public page at <https://www.facebook.com/campnetanya/>. Other “Search on Maps” links are search queries; confirm each business, current facilities, and access directly. The page does not claim personal visits.
 - The referenced PDF and grading rubric were not present in the workspace. Replace or verify all education, experience, project, and biographical details before publishing.
