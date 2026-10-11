@@ -26,6 +26,7 @@
 
     const elements = {
       accountForms: $('account-forms'),
+      accountGateNote: $('account-gate-note'),
       accountMessage: $('account-message'),
       accountSessionLabel: $('account-session-label'),
       backendStatus: document.querySelector('[data-backend-status]'),
@@ -44,6 +45,7 @@
       checkoutSetupNotice: $('checkout-setup-notice'),
       clearCart: $('clear-cart'),
       clearPromo: $('clear-promo'),
+      comboGrid: $('combo-grid'),
       continueCheckout: $('continue-checkout'),
       customerDashboard: $('customer-dashboard'),
       customerOrders: $('customer-orders'),
@@ -56,6 +58,7 @@
       fulfillmentMethod: $('fulfillment-method'),
       loginForm: $('login-form'),
       loginMessage: $('login-message'),
+      memberStoreContent: $('member-store-content'),
       logoutButton: $('logout-button'),
       modeLabel: document.querySelector('[data-mode-label]'),
       noProducts: $('no-products'),
@@ -441,6 +444,12 @@
       }
     }
 
+    function isFoodCombo(product) {
+      return String(product?.category_slug || '').toLocaleLowerCase() === 'combo-deals' ||
+        String(product?.category_name || '').trim().toLocaleLowerCase() === 'combo deals' ||
+        String(product?.category_id || '').toLocaleLowerCase() === 'combo-deals';
+    }
+
     function categoryValue(product) {
       return String(product.category_id || product.category_slug || product.category_name || 'uncategorized');
     }
@@ -454,7 +463,13 @@
     function refreshCategoryFilter() {
       if (!elements.categoryFilter) return;
       const selected = elements.categoryFilter.value;
-      const options = categories.map((category) => ({
+      const visibleCategories = elements.comboGrid
+        ? categories.filter((category) =>
+            String(category.slug || '').toLocaleLowerCase() !== 'combo-deals' &&
+            String(category.name || '').trim().toLocaleLowerCase() !== 'combo deals' &&
+            String(category.id || '').toLocaleLowerCase() !== 'combo-deals')
+        : categories;
+      const options = visibleCategories.map((category) => ({
         value: String(category.id || category.slug || category.name),
         label: String(category.name || category.slug || 'Category'),
       }));
@@ -487,9 +502,11 @@
         ? 'Price pending'
         : (!productIsAvailable ? 'Unavailable' : (hasOptions ? 'Choose options' : 'Add to cart'));
       const primaryDisabled = productIsAvailable ? '' : 'disabled';
-      const featuredBadge = product.is_featured ? '<span class="product-badge">Featured</span>' : '';
+      const featuredBadge = product.is_featured
+        ? `<span class="product-badge">${shop === 'mochajaki' ? 'Top offer' : 'Featured'}</span>`
+        : '';
       const sampleBadge = product.is_sample && !pricePending
-        ? '<span class="product-badge sample-badge">Demo sample</span>'
+        ? `<span class="product-badge sample-badge">${shop === 'mochajaki' ? 'Sample idea' : 'Demo sample'}</span>`
         : '';
       const pendingBadge = pricePending ? '<span class="product-badge sample-badge">Price pending</span>' : '';
       const priceLabel = pricePending
@@ -532,6 +549,7 @@
       const sort = elements.sortFilter?.value || 'featured';
       const list = products.filter((product) => {
         const searchText = `${product.name || ''} ${product.description || ''} ${productCategoryName(product)}`.toLocaleLowerCase();
+        if (elements.comboGrid && isFoodCombo(product)) return false;
         if (term && !searchText.includes(term)) return false;
         if (category !== 'all' && categoryValue(product) !== category) return false;
         if (availability === 'available' && !product.available) return false;
@@ -545,10 +563,52 @@
       return list;
     }
 
+    function renderCategorySections(list) {
+      const groups = new Map();
+      for (const product of list) {
+        const key = categoryValue(product);
+        if (!groups.has(key)) groups.set(key, { name: productCategoryName(product), products: [] });
+        groups.get(key).products.push(product);
+      }
+
+      const categoryOrder = new Map(categories
+        .filter((category) => !isFoodCombo({ category_id: category.id, category_slug: category.slug, category_name: category.name }))
+        .map((category, index) => [String(category.id || category.slug || category.name), index]));
+      const orderedGroups = [...groups.entries()].sort(([leftKey], [rightKey]) =>
+        (categoryOrder.get(leftKey) ?? Number.MAX_SAFE_INTEGER) - (categoryOrder.get(rightKey) ?? Number.MAX_SAFE_INTEGER));
+
+      return orderedGroups.map(([key, group], index) => {
+        const headingId = `catalog-category-${index + 1}`;
+        return `
+          <section class="catalog-category-group" aria-labelledby="${headingId}">
+            <div class="catalog-category-heading">
+              <div>
+                <span class="catalog-category-kicker">Menu section ${String(index + 1).padStart(2, '0')}</span>
+                <h3 id="${headingId}">${html(group.name)}</h3>
+              </div>
+              <span class="catalog-category-count">${group.products.length} ${group.products.length === 1 ? 'item' : 'items'}</span>
+            </div>
+            <div class="store-product-grid catalog-category-products">${group.products.map(productCard).join('')}</div>
+          </section>
+        `;
+      }).join('');
+    }
+
+    function renderFoodCombos() {
+      if (!elements.comboGrid) return;
+      const comboProducts = products.filter((product) => isFoodCombo(product));
+      elements.comboGrid.innerHTML = comboProducts.length
+        ? comboProducts.map(productCard).join('')
+        : '<p class="store-empty">No combo ideas are available yet.</p>';
+    }
+
     function renderProducts() {
       if (!elements.productGrid) return;
       const list = matchingProducts();
-      elements.productGrid.innerHTML = list.map(productCard).join('');
+      const useCategorySections = elements.productGrid.dataset.catalogLayout === 'sections';
+      elements.productGrid.innerHTML = useCategorySections
+        ? renderCategorySections(list)
+        : list.map(productCard).join('');
       if (elements.noProducts) elements.noProducts.hidden = list.length > 0;
       if (!products.length) {
         elements.productGrid.innerHTML = '<p class="store-empty">The shop owner has not added any products yet.</p>';
@@ -556,11 +616,12 @@
       }
 
       renderRecommendations();
+      renderFoodCombos();
     }
 
     function renderRecommendations() {
       if (!elements.suggestionGrid) return;
-      const availableProducts = products.filter((product) => product.available && !isPricePending(product));
+      const availableProducts = products.filter((product) => product.available && !isPricePending(product) && !(elements.comboGrid && isFoodCombo(product)));
       const cartProductIds = new Set(cart.map((item) => String(item.productId)));
       const notInCart = availableProducts.filter((product) => !cartProductIds.has(String(product.id)));
       const featuredNotInCart = notInCart.filter((product) => product.is_featured);
@@ -711,6 +772,16 @@
       const signedIn = Boolean(currentUser);
       elements.accountForms.hidden = signedIn;
       elements.customerDashboard.hidden = !signedIn;
+      if (elements.accountGateNote) elements.accountGateNote.hidden = signedIn;
+      if (elements.memberStoreContent) elements.memberStoreContent.hidden = !signedIn;
+      document.querySelectorAll('[data-member-link]').forEach((link) => { link.hidden = !signedIn; });
+      const menuEntryCta = $('menu-entry-cta');
+      if (menuEntryCta) {
+        menuEntryCta.href = signedIn ? '#top-offers' : '#account';
+        menuEntryCta.innerHTML = signedIn
+          ? 'View Top Offers <span aria-hidden="true">↑</span>'
+          : 'Sign in to view the menu <span aria-hidden="true">↓</span>';
+      }
       if (elements.accountSessionLabel) elements.accountSessionLabel.textContent = signedIn ? currentUser.email : 'Not signed in';
       if (elements.dashboardWelcome) elements.dashboardWelcome.textContent = `Welcome${profile?.full_name ? `, ${profile.full_name}` : ''}`;
       if (elements.dashboardEmail) elements.dashboardEmail.textContent = currentUser?.email || '';
@@ -726,6 +797,7 @@
       }
       updateAdminLink();
       if (signedIn) loadDashboard();
+      updateCatalogStatus();
       updateCheckoutAvailability();
     }
 
@@ -740,12 +812,34 @@
         currentUser = null;
         profile = null;
         staffMemberships = [];
-        if (error.status === 401) setMessage(elements.accountMessage, '', '');
-        else setMessage(elements.accountMessage, 'Account services need the Express server and Supabase Auth configuration before sign-in or order history can work.', 'info');
+        if (error.status === 401 && elements.memberStoreContent) {
+          try {
+            const health = await api.requestJson('/api/health');
+            const missing = health.supabaseMissingSettings?.[shop] || [];
+            if (health.supabaseProjects?.[shop] === false) {
+              const missingNames = missing.length ? ` Missing settings: ${missing.join(', ')}.` : '';
+              setMessage(elements.accountMessage, `Mochajaki accounts are unavailable until its separate Supabase project is connected. ${supabaseSetupSummary()}${missingNames}`, 'info');
+            } else {
+              setMessage(elements.accountMessage, '', '');
+            }
+          } catch {
+            setMessage(elements.accountMessage, '', '');
+          }
+        } else if (error.status === 401) {
+          setMessage(elements.accountMessage, '', '');
+        } else {
+          setMessage(elements.accountMessage, 'Account services need the Express server and Supabase Auth configuration before sign-in or order history can work.', 'info');
+        }
       } finally {
         sessionLoaded = true;
         renderAccount();
         updateCheckoutAvailability();
+        if (currentUser && elements.memberStoreContent && !catalogLoaded) {
+          await loadCatalog();
+        }
+        if (currentUser && elements.memberStoreContent) {
+          $('top-offers')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     }
 
@@ -924,8 +1018,11 @@
       if (!elements.checkoutSetupNotice) return;
       let message;
       let kind = '';
-      if (!sourceConnected) {
-        message = `Preview only: local sample listings are visible. ${supabaseSetupSummary()} Accounts and order submission remain unavailable until setup. No payment is collected in this preview.`;
+      if (!sourceConnected && elements.memberStoreContent && !currentUser) {
+        message = `Create an account or sign in to see the Mochajaki menu. ${supabaseSetupSummary()} No payment is collected in this preview.`;
+      } else if (!sourceConnected) {
+        const visibility = elements.memberStoreContent ? 'shown after sign-in' : 'visible';
+        message = `Preview only: local sample listings are ${visibility}. ${supabaseSetupSummary()} Accounts and order submission remain unavailable until setup. No payment is collected in this preview.`;
       } else if (!checkoutConfig) {
         message = 'The catalog loaded, but checkout settings could not be loaded. Confirm the shop fulfillment and payment configuration.';
         kind = 'error';
@@ -948,17 +1045,20 @@
     }
 
     function updateCatalogStatus() {
+      const accountRequired = Boolean(elements.memberStoreContent) && !currentUser;
       if (elements.modeLabel) {
-        elements.modeLabel.textContent = !sourceConnected
-          ? 'Preview · offline'
-          : (shopInfo.is_demo ? 'Supabase demo catalog' : 'Connected catalog');
+        elements.modeLabel.textContent = accountRequired
+          ? 'Account required'
+          : (!sourceConnected ? 'Preview · offline' : (shopInfo.is_demo ? 'Supabase demo catalog' : 'Connected catalog'));
       }
       if (elements.backendStatus) {
-        elements.backendStatus.textContent = !sourceConnected
-          ? `Preview only: local sample listings are shown. ${supabaseSetupSummary()}`
-          : (shopInfo.is_demo
-            ? 'Development shop connected. Test orders remain unpaid; payment methods are selection only and are not verified here.'
-            : 'Connected to the shop catalog. Product availability and totals are confirmed again by the server at checkout.');
+        elements.backendStatus.textContent = accountRequired
+          ? 'Sign in or create a Mochajaki account to access Top Offers and the menu.'
+          : (!sourceConnected
+            ? `Preview only: local sample listings are shown. ${supabaseSetupSummary()}`
+            : (shopInfo.is_demo
+              ? 'Development shop connected. Test orders remain unpaid; payment methods are selection only and are not verified here.'
+              : 'Connected to the shop catalog. Product availability and totals are confirmed again by the server at checkout.'));
       }
       updateCheckoutNotice();
     }
@@ -1389,7 +1489,7 @@
       elements.availabilityFilter?.addEventListener('change', renderProducts);
       elements.sortFilter?.addEventListener('change', renderProducts);
 
-      for (const grid of [elements.productGrid, elements.suggestionGrid]) {
+      for (const grid of [elements.productGrid, elements.suggestionGrid, elements.comboGrid]) {
         grid?.addEventListener('click', (event) => {
           const button = event.target.closest('[data-product-action]');
           if (!button) return;
@@ -1548,13 +1648,13 @@
     renderCart();
     updateCheckoutNotice();
 
+    const requiresMochajakiAccount = shop === 'mochajaki' && Boolean(elements.memberStoreContent);
     Promise.all([
-      loadCatalog(),
-      loadDeals(),
+      ...(requiresMochajakiAccount ? [] : [loadCatalog(), loadDeals()]),
       loadCheckoutConfiguration(),
       loadAccount(),
     ]).finally(() => {
-      catalogLoaded = true;
+      if (!requiresMochajakiAccount || currentUser) catalogLoaded = true;
       configurationLoaded = true;
       sessionLoaded = true;
       renderProducts();

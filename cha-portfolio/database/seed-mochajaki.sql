@@ -1,8 +1,8 @@
 -- Mochajaki-only catalog seed. Run this file in Mochajaki's independent Supabase project only.
--- The Small/Big Pasta prices are the values supplied by the owner.
--- Added drinks, snacks, and chicken-with-rice prices are editable sample suggestions for owner review.
--- Keep the shop in demo mode and confirm each suggestion before accepting live orders.
--- GCash, Maya, and Other are manual choices only; no payment is collected or verified here.
+-- The Small/Big pasta prices are the values supplied by the owner.
+-- Drinks, snacks, chicken-rice meal variants, and food-combo bundles are sample ideas with suggested PHP prices for owner review.
+-- The listed flavor/size choices are suggestions, not confirmed live menu details. Keep this shop in demo mode until reviewed.
+-- GCash, Maya, and Other remain manual choices only; no payment is collected or verified here.
 
 insert into public.shops (
   slug,
@@ -15,7 +15,7 @@ insert into public.shops (
 ) values (
   'mochajaki',
   'Mochajaki Snack Corner Gasang',
-  'Pasta, beverages, snacks, and chicken-with-rice menu. New non-pasta items and prices are sample suggestions for owner review.',
+  'Pasta, beverages, snacks, chicken-with-rice meals, and owner-review food-combo suggestions.',
   'PHP',
   '[{"id":"demo-fulfillment","label":"Development fulfillment (replace before launch)","enabled":true}]'::jsonb,
   '[{"id":"gcash","label":"GCash","enabled":true,"instructions":"Add verified GCash payment instructions before accepting payment. Orders remain unpaid until payment is verified separately."},{"id":"maya","label":"Maya","enabled":true,"instructions":"Add verified Maya payment instructions before accepting payment. Orders remain unpaid until payment is verified separately."},{"id":"other","label":"Other","enabled":true,"instructions":"Confirm any other payment arrangement with the shop. Orders remain unpaid until payment is verified separately."}]'::jsonb,
@@ -61,7 +61,8 @@ cross join (
     ('Pasta', 'pasta', 1),
     ('Beverages', 'beverages', 2),
     ('Snacks', 'snacks', 3),
-    ('Chicken & Rice', 'chicken-rice', 4)
+    ('Chicken & Rice', 'chicken-rice', 4),
+    ('Combo Deals', 'combo-deals', 5)
 ) as item(name, slug, sort_order)
 where shop.slug = 'mochajaki'
 on conflict (shop_id, slug) do nothing;
@@ -119,43 +120,213 @@ where not exists (
     and existing.name = item.name
 );
 
+-- Rename only our earlier sample milkshake row. Do not change a non-sample owner listing.
+update public.products as product
+set name = 'Milkshake',
+    updated_at = now()
+from public.shops as shop
+where product.shop_id = shop.id
+  and shop.slug = 'mochajaki'
+  and product.name = 'Chocolate Milkshake'
+  and product.is_sample
+  and product.description like 'Sample menu idea with a suggested PHP price.%'
+  and not exists (
+    select 1
+    from public.products as existing
+    where existing.shop_id = shop.id
+      and existing.name = 'Milkshake'
+  );
+
+-- Refresh only this seed's prior sample rows so an already-seeded project gains the new choices.
+with sample_items (
+  category_slug, name, description, price, is_featured, display_order, options
+) as (
+  values
+    (
+      'beverages', 'Iced Coffee',
+      'Sample menu idea with a suggested PHP price. Choose Classic, Caramel, or Mocha and Regular or Large.',
+      60.00::numeric, true, 5,
+      '[{"id":"flavor","label":"Flavor","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"classic","label":"Classic","price_delta":0},{"id":"caramel","label":"Caramel","price_delta":10},{"id":"mocha","label":"Mocha","price_delta":10}]},{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":20}]}]'::jsonb
+    ),
+    (
+      'beverages', 'Classic Milk Tea',
+      'Sample menu idea with a suggested PHP price. Choose Classic, Wintermelon, Taro, or Brown Sugar and Regular or Large.',
+      75.00::numeric, false, 6,
+      '[{"id":"flavor","label":"Flavor","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"classic","label":"Classic","price_delta":0},{"id":"wintermelon","label":"Wintermelon","price_delta":0},{"id":"taro","label":"Taro","price_delta":0},{"id":"brown-sugar","label":"Brown sugar","price_delta":10}]},{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":20}]}]'::jsonb
+    ),
+    (
+      'beverages', 'Milkshake',
+      'Sample menu idea with a suggested PHP price. Choose Chocolate, Strawberry, or Mango and Regular or Large.',
+      85.00::numeric, false, 7,
+      '[{"id":"flavor","label":"Flavor","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"chocolate","label":"Chocolate","price_delta":0},{"id":"strawberry","label":"Strawberry","price_delta":0},{"id":"mango","label":"Mango","price_delta":0}]},{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":25}]}]'::jsonb
+    ),
+    (
+      'snacks', 'Homemade Burger',
+      'Sample menu idea with a suggested PHP price. Choose a Single or Double patty.',
+      85.00::numeric, true, 8,
+      '[{"id":"size","label":"Patty size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"single","label":"Single patty","price_delta":0},{"id":"double","label":"Double patty","price_delta":35}]}]'::jsonb
+    ),
+    (
+      'snacks', 'Classic Hotdog',
+      'Sample menu idea with a suggested PHP price. Choose Regular or Jumbo.',
+      45.00::numeric, false, 9,
+      '[{"id":"size","label":"Hotdog size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"jumbo","label":"Jumbo","price_delta":20}]}]'::jsonb
+    ),
+    (
+      'snacks', 'French Fries',
+      'Sample menu idea with a suggested PHP price. Choose Regular or Large and Original, Cheese, or Barbecue seasoning.',
+      50.00::numeric, false, 10,
+      '[{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":20}]},{"id":"seasoning","label":"Seasoning","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"original","label":"Original","price_delta":0},{"id":"cheese","label":"Cheese","price_delta":10},{"id":"barbecue","label":"Barbecue","price_delta":10}]}]'::jsonb
+    ),
+    (
+      'chicken-rice', 'Classic Chicken with Rice',
+      'Sample menu idea with a suggested PHP price. Choose a Regular or Large meal.',
+      100.00::numeric, true, 11,
+      '[{"id":"size","label":"Meal size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":30}]}]'::jsonb
+    ),
+    (
+      'chicken-rice', 'Garlic Chicken with Rice',
+      'Sample menu idea with a suggested PHP price. Choose a Regular or Large meal.',
+      110.00::numeric, false, 12,
+      '[{"id":"size","label":"Meal size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":30}]}]'::jsonb
+    ),
+    (
+      'chicken-rice', 'Spicy Chicken with Rice',
+      'Sample menu idea with a suggested PHP price. Choose a Regular or Large meal.',
+      110.00::numeric, false, 13,
+      '[{"id":"size","label":"Meal size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":30}]}]'::jsonb
+    ),
+    (
+      'combo-deals', 'Palabok & Iced Coffee Combo',
+      'Sample combo idea with a suggested PHP price. Includes Small Palabok and one Regular Iced Coffee; confirm the bundle before publishing.',
+      95.00::numeric, false, 14, '[]'::jsonb
+    ),
+    (
+      'combo-deals', 'Homemade Burger & Fries Combo',
+      'Sample combo idea with a suggested PHP price. Includes a Single-patty Homemade Burger and Regular Fries; confirm the bundle before publishing.',
+      125.00::numeric, false, 15, '[]'::jsonb
+    ),
+    (
+      'combo-deals', 'Chicken Rice & Milk Tea Combo',
+      'Sample combo idea with a suggested PHP price. Includes Regular Classic Chicken with Rice and one Regular Classic Milk Tea; confirm the bundle before publishing.',
+      160.00::numeric, false, 16, '[]'::jsonb
+    )
+)
+update public.products as product
+set category_id = category.id,
+    description = item.description,
+    price = item.price,
+    available = true,
+    image_url = '/assets/images/food-placeholder.svg',
+    is_sample = true,
+    is_featured = item.is_featured,
+    display_order = item.display_order,
+    options = item.options,
+    updated_at = now()
+from sample_items as item
+join public.shops as shop on shop.slug = 'mochajaki'
+join public.categories as category
+  on category.shop_id = shop.id and category.slug = item.category_slug
+where product.shop_id = shop.id
+  and product.name = item.name
+  and product.is_sample
+  and (
+    product.description like 'Sample menu idea with a suggested PHP price.%'
+    or product.description like 'Sample combo idea with a suggested PHP price.%'
+  );
+
+-- Insert any sample listings that aren't already present. Existing non-sample owner entries are left untouched.
+with sample_items (
+  category_slug, name, description, price, is_featured, display_order, options
+) as (
+  values
+    (
+      'beverages', 'Iced Coffee',
+      'Sample menu idea with a suggested PHP price. Choose Classic, Caramel, or Mocha and Regular or Large.',
+      60.00::numeric, true, 5,
+      '[{"id":"flavor","label":"Flavor","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"classic","label":"Classic","price_delta":0},{"id":"caramel","label":"Caramel","price_delta":10},{"id":"mocha","label":"Mocha","price_delta":10}]},{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":20}]}]'::jsonb
+    ),
+    (
+      'beverages', 'Classic Milk Tea',
+      'Sample menu idea with a suggested PHP price. Choose Classic, Wintermelon, Taro, or Brown Sugar and Regular or Large.',
+      75.00::numeric, false, 6,
+      '[{"id":"flavor","label":"Flavor","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"classic","label":"Classic","price_delta":0},{"id":"wintermelon","label":"Wintermelon","price_delta":0},{"id":"taro","label":"Taro","price_delta":0},{"id":"brown-sugar","label":"Brown sugar","price_delta":10}]},{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":20}]}]'::jsonb
+    ),
+    (
+      'beverages', 'Milkshake',
+      'Sample menu idea with a suggested PHP price. Choose Chocolate, Strawberry, or Mango and Regular or Large.',
+      85.00::numeric, false, 7,
+      '[{"id":"flavor","label":"Flavor","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"chocolate","label":"Chocolate","price_delta":0},{"id":"strawberry","label":"Strawberry","price_delta":0},{"id":"mango","label":"Mango","price_delta":0}]},{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":25}]}]'::jsonb
+    ),
+    (
+      'snacks', 'Homemade Burger',
+      'Sample menu idea with a suggested PHP price. Choose a Single or Double patty.',
+      85.00::numeric, true, 8,
+      '[{"id":"size","label":"Patty size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"single","label":"Single patty","price_delta":0},{"id":"double","label":"Double patty","price_delta":35}]}]'::jsonb
+    ),
+    (
+      'snacks', 'Classic Hotdog',
+      'Sample menu idea with a suggested PHP price. Choose Regular or Jumbo.',
+      45.00::numeric, false, 9,
+      '[{"id":"size","label":"Hotdog size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"jumbo","label":"Jumbo","price_delta":20}]}]'::jsonb
+    ),
+    (
+      'snacks', 'French Fries',
+      'Sample menu idea with a suggested PHP price. Choose Regular or Large and Original, Cheese, or Barbecue seasoning.',
+      50.00::numeric, false, 10,
+      '[{"id":"size","label":"Size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":20}]},{"id":"seasoning","label":"Seasoning","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"original","label":"Original","price_delta":0},{"id":"cheese","label":"Cheese","price_delta":10},{"id":"barbecue","label":"Barbecue","price_delta":10}]}]'::jsonb
+    ),
+    (
+      'chicken-rice', 'Classic Chicken with Rice',
+      'Sample menu idea with a suggested PHP price. Choose a Regular or Large meal.',
+      100.00::numeric, true, 11,
+      '[{"id":"size","label":"Meal size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":30}]}]'::jsonb
+    ),
+    (
+      'chicken-rice', 'Garlic Chicken with Rice',
+      'Sample menu idea with a suggested PHP price. Choose a Regular or Large meal.',
+      110.00::numeric, false, 12,
+      '[{"id":"size","label":"Meal size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":30}]}]'::jsonb
+    ),
+    (
+      'chicken-rice', 'Spicy Chicken with Rice',
+      'Sample menu idea with a suggested PHP price. Choose a Regular or Large meal.',
+      110.00::numeric, false, 13,
+      '[{"id":"size","label":"Meal size","type":"single","required":true,"min_selected":1,"max_selected":1,"values":[{"id":"regular","label":"Regular","price_delta":0},{"id":"large","label":"Large","price_delta":30}]}]'::jsonb
+    ),
+    (
+      'combo-deals', 'Palabok & Iced Coffee Combo',
+      'Sample combo idea with a suggested PHP price. Includes Small Palabok and one Regular Iced Coffee; confirm the bundle before publishing.',
+      95.00::numeric, false, 14, '[]'::jsonb
+    ),
+    (
+      'combo-deals', 'Homemade Burger & Fries Combo',
+      'Sample combo idea with a suggested PHP price. Includes a Single-patty Homemade Burger and Regular Fries; confirm the bundle before publishing.',
+      125.00::numeric, false, 15, '[]'::jsonb
+    ),
+    (
+      'combo-deals', 'Chicken Rice & Milk Tea Combo',
+      'Sample combo idea with a suggested PHP price. Includes Regular Classic Chicken with Rice and one Regular Classic Milk Tea; confirm the bundle before publishing.',
+      160.00::numeric, false, 16, '[]'::jsonb
+    )
+)
 insert into public.products (
-  shop_id,
-  category_id,
-  name,
-  description,
-  price,
-  available,
-  image_url,
-  is_sample,
-  is_featured,
-  display_order,
-  options
+  shop_id, category_id, name, description, price, available, image_url,
+  is_sample, is_featured, display_order, options
 )
 select
   shop.id,
   category.id,
   item.name,
-  'Sample menu idea with a suggested PHP price. Confirm the recipe, portion, availability, and final price before accepting real orders.',
+  item.description,
   item.price,
   true,
   '/assets/images/food-placeholder.svg',
   true,
   item.is_featured,
   item.display_order,
-  '[]'::jsonb
-from (
-  values
-    ('beverages', 'Iced Coffee', 60.00::numeric, false, 5),
-    ('beverages', 'Classic Milk Tea', 75.00::numeric, false, 6),
-    ('beverages', 'Chocolate Milkshake', 85.00::numeric, false, 7),
-    ('snacks', 'Homemade Burger', 85.00::numeric, false, 8),
-    ('snacks', 'Classic Hotdog', 45.00::numeric, false, 9),
-    ('snacks', 'French Fries', 50.00::numeric, false, 10),
-    ('chicken-rice', 'Classic Chicken with Rice', 100.00::numeric, false, 11),
-    ('chicken-rice', 'Garlic Chicken with Rice', 110.00::numeric, false, 12),
-    ('chicken-rice', 'Spicy Chicken with Rice', 110.00::numeric, false, 13)
-) as item(category_slug, name, price, is_featured, display_order)
+  item.options
+from sample_items as item
 join public.shops as shop on shop.slug = 'mochajaki'
 join public.categories as category
   on category.shop_id = shop.id and category.slug = item.category_slug
@@ -166,4 +337,4 @@ where not exists (
     and existing.name = item.name
 );
 
--- No active discounts or promotions are seeded.
+-- No active discounts, promotions, or promo-code redemption rules are seeded.

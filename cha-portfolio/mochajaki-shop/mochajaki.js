@@ -21,13 +21,29 @@
   ];
 
   const image = '../assets/images/food-placeholder.svg';
-  const sampleDescription = 'Sample menu idea with a suggested PHP price. Confirm the recipe, portion, availability, and final price before accepting real orders.';
+  const sampleDescription = 'Sample menu idea with a suggested PHP price. Confirm flavor, portion, and final price before accepting real orders.';
+  const comboDescription = 'Sample food-combo suggestion with a proposed bundle price. Confirm the included items and price before publishing.';
   const categories = [
-    { id: 'pasta', name: 'Pasta', slug: 'pasta' },
-    { id: 'beverages', name: 'Beverages', slug: 'beverages' },
-    { id: 'snacks', name: 'Snacks', slug: 'snacks' },
-    { id: 'chicken-rice', name: 'Chicken & Rice', slug: 'chicken-rice' },
+    { id: 'pasta', name: 'Pasta', slug: 'pasta', sort_order: 1 },
+    { id: 'beverages', name: 'Beverages', slug: 'beverages', sort_order: 2 },
+    { id: 'snacks', name: 'Snacks', slug: 'snacks', sort_order: 3 },
+    { id: 'chicken-rice', name: 'Chicken & Rice', slug: 'chicken-rice', sort_order: 4 },
+    { id: 'combo-deals', name: 'Combo Deals', slug: 'combo-deals', sort_order: 5 },
   ];
+
+  const choiceGroup = (id, label, choices) => ({
+    id,
+    label,
+    type: 'single',
+    required: true,
+    min_selected: 1,
+    max_selected: 1,
+    values: choices.map(([valueId, valueLabel, priceDelta]) => ({
+      id: valueId,
+      label: valueLabel,
+      price_delta: priceDelta,
+    })),
+  });
 
   const sizeOptions = (smallPrice, bigPrice) => [{
     id: 'size',
@@ -69,46 +85,82 @@
     },
     {
       id: 'mochajaki-iced-coffee', category_id: 'beverages', category_name: 'Beverages',
-      name: 'Iced Coffee', price: 60,
+      name: 'Iced Coffee', price: 60, featured: true,
+      options: [
+        choiceGroup('flavor', 'Flavor', [['classic', 'Classic', 0], ['caramel', 'Caramel', 10], ['mocha', 'Mocha', 10]]),
+        choiceGroup('size', 'Size', [['regular', 'Regular', 0], ['large', 'Large', 20]]),
+      ],
     },
     {
       id: 'mochajaki-milk-tea', category_id: 'beverages', category_name: 'Beverages',
       name: 'Classic Milk Tea', price: 75,
+      options: [
+        choiceGroup('flavor', 'Flavor', [['classic', 'Classic', 0], ['wintermelon', 'Wintermelon', 0], ['taro', 'Taro', 0], ['brown-sugar', 'Brown sugar', 10]]),
+        choiceGroup('size', 'Size', [['regular', 'Regular', 0], ['large', 'Large', 20]]),
+      ],
     },
     {
-      id: 'mochajaki-chocolate-milkshake', category_id: 'beverages', category_name: 'Beverages',
-      name: 'Chocolate Milkshake', price: 85,
+      id: 'mochajaki-milkshake', category_id: 'beverages', category_name: 'Beverages',
+      name: 'Milkshake', price: 85,
+      options: [
+        choiceGroup('flavor', 'Flavor', [['chocolate', 'Chocolate', 0], ['strawberry', 'Strawberry', 0], ['mango', 'Mango', 0]]),
+        choiceGroup('size', 'Size', [['regular', 'Regular', 0], ['large', 'Large', 25]]),
+      ],
     },
     {
       id: 'mochajaki-homemade-burger', category_id: 'snacks', category_name: 'Snacks',
-      name: 'Homemade Burger', price: 85,
+      name: 'Homemade Burger', price: 85, featured: true,
+      options: [choiceGroup('size', 'Patty size', [['single', 'Single patty', 0], ['double', 'Double patty', 35]])],
     },
     {
       id: 'mochajaki-hotdog', category_id: 'snacks', category_name: 'Snacks',
       name: 'Classic Hotdog', price: 45,
+      options: [choiceGroup('size', 'Hotdog size', [['regular', 'Regular', 0], ['jumbo', 'Jumbo', 20]])],
     },
     {
       id: 'mochajaki-fries', category_id: 'snacks', category_name: 'Snacks',
       name: 'French Fries', price: 50,
+      options: [
+        choiceGroup('size', 'Size', [['regular', 'Regular', 0], ['large', 'Large', 20]]),
+        choiceGroup('seasoning', 'Seasoning', [['original', 'Original', 0], ['cheese', 'Cheese', 10], ['barbecue', 'Barbecue', 10]]),
+      ],
     },
     {
       id: 'mochajaki-chicken-rice-classic', category_id: 'chicken-rice', category_name: 'Chicken & Rice',
-      name: 'Classic Chicken with Rice', price: 100,
+      name: 'Classic Chicken with Rice', price: 100, featured: true,
+      options: [choiceGroup('size', 'Meal size', [['regular', 'Regular', 0], ['large', 'Large', 30]])],
     },
     {
       id: 'mochajaki-chicken-rice-garlic', category_id: 'chicken-rice', category_name: 'Chicken & Rice',
       name: 'Garlic Chicken with Rice', price: 110,
+      options: [choiceGroup('size', 'Meal size', [['regular', 'Regular', 0], ['large', 'Large', 30]])],
     },
     {
       id: 'mochajaki-chicken-rice-spicy', category_id: 'chicken-rice', category_name: 'Chicken & Rice',
       name: 'Spicy Chicken with Rice', price: 110,
+      options: [choiceGroup('size', 'Meal size', [['regular', 'Regular', 0], ['large', 'Large', 30]])],
+    },
+    {
+      id: 'mochajaki-combo-pasta-coffee', category_id: 'combo-deals', category_name: 'Combo Deals',
+      name: 'Palabok & Iced Coffee Combo', price: 95,
+      description: 'Sample combo: Small Palabok with one regular Iced Coffee. Suggested bundle price for owner review.',
+    },
+    {
+      id: 'mochajaki-combo-burger-fries', category_id: 'combo-deals', category_name: 'Combo Deals',
+      name: 'Homemade Burger & Fries Combo', price: 125,
+      description: 'Sample combo: Single-patty Homemade Burger with regular fries. Suggested bundle price for owner review.',
+    },
+    {
+      id: 'mochajaki-combo-chicken-milk-tea', category_id: 'combo-deals', category_name: 'Combo Deals',
+      name: 'Chicken Rice & Milk Tea Combo', price: 160,
+      description: 'Sample combo: Regular Classic Chicken with Rice and one regular Classic Milk Tea. Suggested bundle price for owner review.',
     },
   ].map((product, index) => ({
     ...product,
-    description: product.description || sampleDescription,
+    description: product.description || (product.category_id === 'combo-deals' ? comboDescription : sampleDescription),
     available: product.available ?? true,
     image_url: image,
-    is_sample: product.is_sample ?? true,
+    is_sample: product.is_sample ?? product.category_id !== 'pasta',
     is_featured: Boolean(product.featured ?? product.is_featured),
     display_order: index + 1,
     options: Array.isArray(product.options) ? product.options : [],

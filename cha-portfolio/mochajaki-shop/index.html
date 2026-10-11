@@ -32,11 +32,12 @@
           <span aria-hidden="true">☰</span>
         </button>
         <nav class="store-nav" id="store-navigation" aria-label="Mochajaki navigation">
-          <a href="#catalog">Menu</a>
-          <a href="#deals">Deals</a>
+          <a href="#top-offers" data-member-link hidden>Top Offers</a>
+          <a href="#catalog" data-member-link hidden>Menu</a>
+          <a href="#deals" data-member-link hidden>Deals</a>
           <a href="#account">My account</a>
           <a class="store-back-link" href="../portfolio/">Portfolio</a>
-          <a class="store-cart-link" href="#cart" aria-label="Go to shopping cart">
+          <a class="store-cart-link" href="#cart" data-member-link hidden aria-label="Go to shopping cart">
             Cart <span id="cart-count" class="cart-count">0</span>
           </a>
         </nav>
@@ -62,10 +63,9 @@
               Browse the menu and its suggested sample prices in Philippine pesos.
             </p>
             <div class="store-hero-actions">
-              <a class="store-button store-button-primary" href="#catalog">Browse the menu <span aria-hidden="true">↓</span></a>
-              <button class="store-button store-button-light" type="button" data-scroll-to="account">
-                Sign in / create account
-              </button>
+              <a class="store-button store-button-primary" id="menu-entry-cta" href="#account">
+                Create an account / sign in <span aria-hidden="true">↓</span>
+              </a>
             </div>
             <p class="store-config-status" data-backend-status role="status" aria-live="polite">
               Loading shop catalog…
@@ -84,262 +84,6 @@
         </div>
       </section>
 
-      <section class="menu-reference-section">
-        <div class="store-container">
-          <details class="menu-reference-panel">
-            <summary>Open the menu reference included with this project</summary>
-            <div class="menu-reference-content">
-              <p>
-                This reference image was included with the project. The pasta names and Small/Big
-                prices in the catalog below are the values you provided for Mochajaki. Added drinks,
-                snacks, and chicken-rice listings use clearly marked sample names and suggested prices.
-              </p>
-              <a href="../assets/images/mochajaki-menu-reference.png" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="../assets/images/mochajaki-menu-reference.png"
-                  alt="Supplied Mochajaki Snack Corner Gasang menu reference image; open in a new tab for the original size"
-                />
-              </a>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <section class="mocha-menu-highlights" aria-labelledby="mocha-highlights-title">
-        <div class="store-container">
-          <div class="category-section-heading">
-            <div>
-              <span class="store-kicker">A little something for every craving</span>
-              <h2 id="mocha-highlights-title">Menu highlights</h2>
-            </div>
-            <p>Browse sample drink, snack, and chicken-rice ideas. These suggested additions are for owner review, not confirmed offers.</p>
-          </div>
-          <div class="mocha-highlight-grid">
-            <article class="mocha-highlight-card mocha-highlight-pasta">
-              <span class="mocha-highlight-number">01 / COMFORT FOOD</span>
-              <h3>Pasta favourites</h3>
-              <p>Lasagna, Palabok, Bake Mac, and Mac &amp; Cheese. Choose Small or Big.</p>
-              <button type="button" class="mocha-highlight-link" data-shop-category="Pasta">Explore pasta <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="mocha-highlight-card mocha-highlight-sips">
-              <span class="mocha-highlight-number">02 / SOMETHING TO SIP</span>
-              <h3>Coffee, tea &amp; shakes</h3>
-              <p>Sample menu picks for coffee, milk tea, and milkshakes.</p>
-              <button type="button" class="mocha-highlight-link" data-shop-category="Beverages">Browse drinks <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="mocha-highlight-card mocha-highlight-meals">
-              <span class="mocha-highlight-number">03 / SNACK TIME</span>
-              <h3>Snacks &amp; chicken rice</h3>
-              <p>Homemade burger, hotdog, fries, and three chicken-with-rice flavors.</p>
-              <button type="button" class="mocha-highlight-link" data-shop-category="Chicken &amp; Rice">See rice meals <span aria-hidden="true">↗</span></button>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="mocha-category-section" aria-labelledby="mocha-category-title">
-        <div class="store-container">
-          <div class="category-section-heading">
-            <div>
-              <span class="store-kicker">Pick a category</span>
-              <h2 id="mocha-category-title">What are you in the mood for?</h2>
-            </div>
-            <p>New drink, snack, and chicken-rice prices are suggested PHP samples. The original pasta names and Small/Big prices are preserved.</p>
-          </div>
-          <div class="mocha-category-grid">
-            <button type="button" class="mocha-category-card" data-shop-category="Pasta">
-              <span class="mocha-category-icon" aria-hidden="true">🍝</span><span class="mocha-category-name">Pasta</span><span class="mocha-category-detail">Small &amp; Big</span>
-            </button>
-            <button type="button" class="mocha-category-card" data-shop-category="Beverages">
-              <span class="mocha-category-icon" aria-hidden="true">☕</span><span class="mocha-category-name">Beverages</span><span class="mocha-category-detail">Coffee · milk tea · shakes</span>
-            </button>
-            <button type="button" class="mocha-category-card" data-shop-category="Snacks">
-              <span class="mocha-category-icon" aria-hidden="true">🍟</span><span class="mocha-category-name">Snacks</span><span class="mocha-category-detail">Burger · hotdog · fries</span>
-            </button>
-            <button type="button" class="mocha-category-card" data-shop-category="Chicken &amp; Rice">
-              <span class="mocha-category-icon" aria-hidden="true">🍗</span><span class="mocha-category-name">Chicken &amp; Rice</span><span class="mocha-category-detail">3 sample flavors</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section class="store-section featured-section" aria-labelledby="featured-title">
-        <div class="store-container">
-          <div class="store-section-heading">
-            <div>
-              <span class="store-kicker">From the menu</span>
-              <h2 id="featured-title">Menu picks</h2>
-            </div>
-            <p>Suggestions use the current catalog and cart, not purchase history.</p>
-          </div>
-          <div class="store-product-grid" id="suggestion-grid">
-            <p class="store-empty">Suggestions will appear after the menu loads.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="store-section catalog-section" id="catalog" aria-labelledby="catalog-title">
-        <div class="store-container">
-          <div class="store-section-heading">
-            <div>
-              <span class="store-kicker">Order from the catalog</span>
-              <h2 id="catalog-title">Browse the menu</h2>
-            </div>
-            <span class="store-mode" data-mode-label>Loading</span>
-          </div>
-          <div class="store-toolbar">
-            <label class="store-search-field">
-              <span class="visually-hidden">Search menu</span>
-              <span aria-hidden="true">⌕</span>
-              <input id="product-search" type="search" placeholder="Search the menu" autocomplete="off" />
-            </label>
-            <label class="store-filter-field">
-              <span class="visually-hidden">Filter by menu category</span>
-              <select id="category-filter">
-                <option value="all">All categories</option>
-              </select>
-            </label>
-            <label class="store-filter-field">
-              <span class="visually-hidden">Filter by availability</span>
-              <select id="availability-filter">
-                <option value="all">All availability</option>
-                <option value="available">Available only</option>
-              </select>
-            </label>
-            <label class="store-filter-field">
-              <span class="visually-hidden">Sort menu items</span>
-              <select id="sort-filter">
-                <option value="featured">Featured first</option>
-                <option value="price-low">Price: low to high</option>
-                <option value="price-high">Price: high to low</option>
-                <option value="name">Name: A to Z</option>
-              </select>
-            </label>
-          </div>
-          <p class="store-message" id="store-status" role="status" aria-live="polite"></p>
-          <div class="store-product-grid" id="product-grid">
-            <p class="store-empty">Loading menu items…</p>
-          </div>
-          <p class="store-empty" id="no-products" hidden>No menu items match these filters.</p>
-        </div>
-      </section>
-
-      <section class="store-section deals-section" id="deals" aria-labelledby="deals-title">
-        <div class="store-container">
-          <div class="store-section-heading">
-            <div>
-              <span class="store-kicker">Only active shop offers</span>
-              <h2 id="deals-title">Deals &amp; promotions</h2>
-            </div>
-            <p>Active offers will appear here when configured. Fixed discounts and totals use Philippine pesos (PHP).</p>
-          </div>
-          <div class="store-deals-grid" id="deals-grid">
-            <p class="store-empty">Checking for active deals…</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="store-section cart-section" id="cart" aria-labelledby="cart-title">
-        <div class="store-container">
-          <div class="store-section-heading">
-            <div>
-              <span class="store-kicker">Your selection</span>
-              <h2 id="cart-title">Shopping cart</h2>
-            </div>
-            <span class="cart-count large-cart-count" data-cart-count-text>0 items</span>
-          </div>
-          <div class="store-cart-layout">
-            <div class="store-panel cart-lines-panel">
-              <div id="cart-items" class="cart-lines">
-                <p class="store-empty">Your cart is empty.</p>
-              </div>
-            </div>
-            <aside class="store-panel cart-summary" aria-labelledby="cart-summary-title">
-              <h3 id="cart-summary-title">Order summary</h3>
-              <div class="summary-row"><span>Subtotal</span><strong id="cart-subtotal">₱0.00</strong></div>
-              <div class="summary-row discount-row" id="discount-row" hidden>
-                <span>Discount</span><strong id="cart-discount">−₱0.00</strong>
-              </div>
-              <div class="summary-row summary-total"><span>Estimated total</span><strong id="cart-total">₱0.00</strong></div>
-              <p class="summary-note">Final product prices, availability, and discounts are verified by the server when an order is placed. No unconfigured fees are added.</p>
-              <form class="promo-form" id="promo-form">
-                <label for="promo-code">Have a promo code?</label>
-                <div class="promo-input-row">
-                  <input id="promo-code" name="promoCode" type="text" maxlength="60" autocomplete="off" placeholder="Enter code" />
-                  <button class="store-button store-button-secondary" type="submit">Apply</button>
-                </div>
-                <button class="clear-promo-link" id="clear-promo" type="button" hidden>Remove code</button>
-                <p class="promo-message" id="promo-message" role="status" aria-live="polite"></p>
-              </form>
-              <button class="store-button store-button-primary full-width" id="continue-checkout" type="button">
-                Continue to checkout
-              </button>
-              <button class="store-button store-button-quiet full-width" id="clear-cart" type="button">Clear cart</button>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="store-section checkout-section" id="checkout" aria-labelledby="checkout-title">
-        <div class="store-container">
-          <div class="store-section-heading">
-            <div>
-              <span class="store-kicker">Review before placing an order</span>
-              <h2 id="checkout-title">Checkout</h2>
-            </div>
-          </div>
-          <div class="checkout-notice" id="checkout-setup-notice" role="status" aria-live="polite">
-            Checking available fulfillment and payment options…
-          </div>
-          <div class="store-checkout-layout">
-            <form class="store-panel checkout-form" id="checkout-form">
-              <h3>Order details</h3>
-              <p class="muted">Sign in or create an account below to continue. Your email is taken from your authenticated account.</p>
-              <div class="store-form-grid">
-                <label class="store-field">
-                  <span>Full name</span>
-                  <input id="checkout-name" name="customerName" type="text" maxlength="120" autocomplete="name" required />
-                </label>
-                <label class="store-field">
-                  <span>Contact number <small>(optional)</small></span>
-                  <input id="checkout-contact" name="customerContact" type="tel" maxlength="40" autocomplete="tel" />
-                </label>
-                <label class="store-field full-field">
-                  <span>Fulfillment method</span>
-                  <select id="fulfillment-method" name="fulfillmentMethod" required>
-                    <option value="">Shop options load after setup</option>
-                  </select>
-                </label>
-                <label class="store-field full-field">
-                  <span>Fulfillment details</span>
-                  <textarea
-                    id="fulfillment-details"
-                    name="fulfillmentDetails"
-                    maxlength="1000"
-                    placeholder="Add only the details requested by this shop."
-                  ></textarea>
-                </label>
-              </div>
-              <fieldset class="payment-options" id="payment-options">
-                <legend>Payment method</legend>
-                <p class="muted">GCash, Maya, and Other are shown as setup choices. Payment details and ordering become available after the shop is connected.</p>
-                <div id="payment-method-list"></div>
-              </fieldset>
-              <p class="payment-instructions" id="payment-instructions" hidden></p>
-              <button class="store-button store-button-primary full-width" id="place-order" type="submit" disabled>
-                Place order
-              </button>
-              <p class="checkout-message" id="checkout-message" role="status" aria-live="polite"></p>
-            </form>
-            <aside class="store-panel checkout-review" aria-labelledby="checkout-review-title">
-              <h3 id="checkout-review-title">Order review</h3>
-              <div id="checkout-review"><p class="store-empty">Your cart is empty.</p></div>
-              <a class="account-shortcut" href="#account">Need an account? Sign in or register <span aria-hidden="true">↗</span></a>
-            </aside>
-          </div>
-        </div>
-      </section>
-
       <section class="store-section account-section" id="account" aria-labelledby="account-title">
         <div class="store-container">
           <div class="store-section-heading">
@@ -349,6 +93,7 @@
             </div>
             <span class="account-session-label" id="account-session-label">Not signed in</span>
           </div>
+          <p class="mocha-account-gate-note" id="account-gate-note">Create an account or sign in to see Top Offers, the menu, combo deals, and your cart. This shop uses its own Mochajaki account service.</p>
           <div id="account-forms" class="account-auth-grid">
             <form class="store-panel account-form" id="login-form">
               <span class="account-form-label">Welcome back</span>
@@ -409,7 +154,7 @@
               </div>
               <p class="form-feedback" id="profile-message" role="status" aria-live="polite"></p>
             </form>
-            <div class="dashboard-columns">
+            <div class="dashboard-columns dashboard-orders-only">
               <section>
                 <div class="dashboard-heading-row">
                   <h4>Recent &amp; current orders</h4>
@@ -419,17 +164,230 @@
                   <p class="store-empty">Sign in to load your real order history.</p>
                 </div>
               </section>
-              <section>
-                <h4>Available deals</h4>
-                <div class="dashboard-deals" id="dashboard-deals">
-                  <p class="store-empty">No customer-specific deals are shown until they are configured.</p>
-                </div>
-              </section>
             </div>
           </section>
           <p class="account-message" id="account-message" role="status" aria-live="polite"></p>
         </div>
       </section>
+
+      <div id="member-store-content" class="mocha-member-store-content" data-member-content hidden>
+        <section class="store-section featured-section mocha-top-offers" id="top-offers" aria-labelledby="featured-title">
+          <div class="store-container">
+            <div class="store-section-heading">
+              <div>
+                <span class="store-kicker">A little something to start</span>
+                <h2 id="featured-title">Top Offers</h2>
+              </div>
+              <p>Sample picks from the menu. Choose a flavor and size where available; these suggestions are not confirmed promotions.</p>
+            </div>
+            <div class="store-product-grid" id="suggestion-grid">
+              <p class="store-empty">Suggestions will appear after the menu loads.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mocha-category-section" aria-labelledby="mocha-category-title">
+          <div class="store-container">
+            <div class="category-section-heading">
+              <div>
+                <span class="store-kicker">Pick a category</span>
+                <h2 id="mocha-category-title">What are you in the mood for?</h2>
+              </div>
+              <p>New drink, snack, and chicken-rice prices are suggested PHP samples. The original pasta names and Small/Big prices are preserved.</p>
+            </div>
+            <div class="mocha-category-grid">
+              <button type="button" class="mocha-category-card" data-shop-category="Pasta">
+                <span class="mocha-category-icon" aria-hidden="true">🍝</span><span class="mocha-category-name">Pasta</span><span class="mocha-category-detail">Small &amp; Big</span>
+              </button>
+              <button type="button" class="mocha-category-card" data-shop-category="Beverages">
+                <span class="mocha-category-icon" aria-hidden="true">☕</span><span class="mocha-category-name">Beverages</span><span class="mocha-category-detail">Coffee · milk tea · shakes</span>
+              </button>
+              <button type="button" class="mocha-category-card" data-shop-category="Snacks">
+                <span class="mocha-category-icon" aria-hidden="true">🍟</span><span class="mocha-category-name">Snacks</span><span class="mocha-category-detail">Burger · hotdog · fries</span>
+              </button>
+              <button type="button" class="mocha-category-card" data-shop-category="Chicken &amp; Rice">
+                <span class="mocha-category-icon" aria-hidden="true">🍗</span><span class="mocha-category-name">Chicken &amp; Rice</span><span class="mocha-category-detail">3 sample flavors</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="store-section catalog-section" id="catalog" aria-labelledby="catalog-title">
+          <div class="store-container">
+            <div class="store-section-heading">
+              <div>
+                <span class="store-kicker">Order from the catalog</span>
+                <h2 id="catalog-title">Browse the menu</h2>
+              </div>
+              <span class="store-mode" data-mode-label>Loading</span>
+            </div>
+            <div class="store-toolbar">
+              <label class="store-search-field">
+                <span class="visually-hidden">Search menu</span>
+                <span aria-hidden="true">⌕</span>
+                <input id="product-search" type="search" placeholder="Search the menu" autocomplete="off" />
+              </label>
+              <label class="store-filter-field">
+                <span class="visually-hidden">Filter by menu category</span>
+                <select id="category-filter">
+                  <option value="all">All categories</option>
+                </select>
+              </label>
+              <label class="store-filter-field">
+                <span class="visually-hidden">Filter by availability</span>
+                <select id="availability-filter">
+                  <option value="all">All availability</option>
+                  <option value="available">Available only</option>
+                </select>
+              </label>
+              <label class="store-filter-field">
+                <span class="visually-hidden">Sort menu items</span>
+                <select id="sort-filter">
+                  <option value="featured">Featured first</option>
+                  <option value="price-low">Price: low to high</option>
+                  <option value="price-high">Price: high to low</option>
+                  <option value="name">Name: A to Z</option>
+                </select>
+              </label>
+            </div>
+            <p class="store-message" id="store-status" role="status" aria-live="polite"></p>
+            <div class="store-product-grid" id="product-grid" data-catalog-layout="sections">
+              <p class="store-empty">Loading menu items…</p>
+            </div>
+            <p class="store-empty" id="no-products" hidden>No menu items match these filters.</p>
+          </div>
+        </section>
+
+        <section class="store-section deals-section mocha-combo-deals" id="deals" aria-labelledby="deals-title">
+          <div class="store-container">
+            <div class="store-section-heading">
+              <div>
+                <span class="store-kicker">Made for sharing</span>
+                <h2 id="deals-title">Combo Deals</h2>
+              </div>
+              <p>Sample food bundles and suggested PHP prices for owner review. Confirm each combo before accepting real orders.</p>
+            </div>
+            <div class="store-product-grid combo-products-grid" id="combo-grid">
+              <p class="store-empty">Sample combo ideas will appear after the menu loads.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="store-section cart-section" id="cart" aria-labelledby="cart-title">
+          <div class="store-container">
+            <div class="store-section-heading">
+              <div>
+                <span class="store-kicker">Your selection</span>
+                <h2 id="cart-title">Shopping cart</h2>
+              </div>
+              <span class="cart-count large-cart-count" data-cart-count-text>0 items</span>
+            </div>
+            <div class="store-cart-layout">
+              <div class="store-panel cart-lines-panel">
+                <div id="cart-items" class="cart-lines">
+                  <p class="store-empty">Your cart is empty.</p>
+                </div>
+              </div>
+              <aside class="store-panel cart-summary" aria-labelledby="cart-summary-title">
+                <h3 id="cart-summary-title">Order summary</h3>
+                <div class="summary-row"><span>Subtotal</span><strong id="cart-subtotal">₱0.00</strong></div>
+                <div class="summary-row discount-row" id="discount-row" hidden>
+                  <span>Discount</span><strong id="cart-discount">−₱0.00</strong>
+                </div>
+                <div class="summary-row summary-total"><span>Estimated total</span><strong id="cart-total">₱0.00</strong></div>
+                <p class="summary-note">Final prices and availability are checked by the server. Combo prices are sample suggestions until the shop approves them; no unconfigured fees are added.</p>
+
+                <button class="store-button store-button-primary full-width" id="continue-checkout" type="button">
+                  Continue to checkout
+                </button>
+                <button class="store-button store-button-quiet full-width" id="clear-cart" type="button">Clear cart</button>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="store-section checkout-section" id="checkout" aria-labelledby="checkout-title">
+          <div class="store-container">
+            <div class="store-section-heading">
+              <div>
+                <span class="store-kicker">Review before placing an order</span>
+                <h2 id="checkout-title">Checkout</h2>
+              </div>
+            </div>
+            <div class="checkout-notice" id="checkout-setup-notice" role="status" aria-live="polite">
+              Checking available fulfillment and payment options…
+            </div>
+            <div class="store-checkout-layout">
+              <form class="store-panel checkout-form" id="checkout-form">
+                <h3>Order details</h3>
+                <p class="muted">You must be signed in to your Mochajaki account to continue. The checkout email comes from your authenticated account.</p>
+                <div class="store-form-grid">
+                  <label class="store-field">
+                    <span>Full name</span>
+                    <input id="checkout-name" name="customerName" type="text" maxlength="120" autocomplete="name" required />
+                  </label>
+                  <label class="store-field">
+                    <span>Contact number <small>(optional)</small></span>
+                    <input id="checkout-contact" name="customerContact" type="tel" maxlength="40" autocomplete="tel" />
+                  </label>
+                  <label class="store-field full-field">
+                    <span>Fulfillment method</span>
+                    <select id="fulfillment-method" name="fulfillmentMethod" required>
+                      <option value="">Shop options load after setup</option>
+                    </select>
+                  </label>
+                  <label class="store-field full-field">
+                    <span>Fulfillment details</span>
+                    <textarea
+                      id="fulfillment-details"
+                      name="fulfillmentDetails"
+                      maxlength="1000"
+                      placeholder="Add only the details requested by this shop."
+                    ></textarea>
+                  </label>
+                </div>
+                <fieldset class="payment-options" id="payment-options">
+                  <legend>Payment method</legend>
+                  <p class="muted">GCash, Maya, and Other are shown as setup choices. Payment details and ordering become available after the shop is connected.</p>
+                  <div id="payment-method-list"></div>
+                </fieldset>
+                <p class="payment-instructions" id="payment-instructions" hidden></p>
+                <button class="store-button store-button-primary full-width" id="place-order" type="submit" disabled>
+                  Place order
+                </button>
+                <p class="checkout-message" id="checkout-message" role="status" aria-live="polite"></p>
+              </form>
+              <aside class="store-panel checkout-review" aria-labelledby="checkout-review-title">
+                <h3 id="checkout-review-title">Order review</h3>
+                <div id="checkout-review"><p class="store-empty">Your cart is empty.</p></div>
+                <a class="account-shortcut" href="#account">Need an account? Sign in or register <span aria-hidden="true">↗</span></a>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="menu-reference-section">
+          <div class="store-container">
+            <details class="menu-reference-panel">
+              <summary>Open the menu reference included with this project</summary>
+              <div class="menu-reference-content">
+                <p>
+                  This reference image was included with the project. The pasta names and Small/Big
+                  prices in the catalog below are the values you provided for Mochajaki. Added drinks,
+                  snacks, and chicken-rice listings use clearly marked sample names and suggested prices.
+                </p>
+                <a href="../assets/images/mochajaki-menu-reference.png" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="../assets/images/mochajaki-menu-reference.png"
+                    alt="Supplied Mochajaki Snack Corner Gasang menu reference image; open in a new tab for the original size"
+                  />
+                </a>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div>
 
       <dialog class="product-dialog" id="product-dialog" aria-labelledby="product-dialog-title">
         <button class="dialog-close" type="button" data-close-product aria-label="Close product details">×</button>
@@ -443,7 +401,7 @@
           <span class="store-brand-mark" aria-hidden="true">M<span>✦</span></span>
           <span class="store-brand-name">Mochajaki</span>
         </a>
-        <p>Pasta, drinks, snacks &amp; chicken-rice menu · Account, cart, and orders are stored separately from DigiCha.</p>
+        <p>Top Offers, menu, food-combo deals, and account · Customer data is stored separately from DigiCha.</p>
         <a href="../portfolio/">Return to Cha’s portfolio</a>
       </div>
     </footer>
