@@ -602,16 +602,32 @@ body.portfolio-theme.about-page {
   height: 28px;
   flex: 0 0 auto;
   object-fit: contain;
+  transition: transform 180ms ease;
+}
+
+.social-placeholder {
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.social-placeholder:hover {
+  transform: translateY(-3px);
+  border-style: solid;
+  border-color: #d99bb6;
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(132, 73, 100, 0.13);
+}
+
+.social-placeholder:hover img {
+  transform: scale(1.08) rotate(-3deg);
 }
 
 .social-placeholder[href] {
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  cursor: pointer;
 }
 
-.social-placeholder[href]:hover {
-  transform: translateY(-2px);
+.social-placeholder[href]:focus-visible {
   border-color: #d99bb6;
-  background: #fff;
+  box-shadow: 0 0 0 3px rgba(217, 155, 182, 0.28);
 }
 
 .social-placeholder div {
@@ -935,7 +951,14 @@ body.portfolio-theme.about-page {
   }
 
   .about-page .experience-card,
-  .about-page .technology-card {
+  .about-page .technology-card,
+  .about-page .social-placeholder,
+  .about-page .social-placeholder img {
     transition: none;
+  }
+
+  .about-page .social-placeholder:hover,
+  .about-page .social-placeholder:hover img {
+    transform: none;
   }
 }

@@ -1,5 +1,7 @@
 .hero {
   position: relative;
+  display: flex;
+  align-items: center;
   width: min(1380px, calc(100% - 24px));
   min-height: max(610px, calc(100svh - 104px));
   margin: 0 auto;
@@ -394,6 +396,6 @@
   }
 
   .profile-card {
-    width: min(260px, 68%);
+    width: min(270px, 86%);
   }
 }
