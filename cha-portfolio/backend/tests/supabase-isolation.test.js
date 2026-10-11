@@ -4,6 +4,7 @@ const {
   createAuthClient,
   getAuthCookieNames,
   getSupabase,
+  missingSupabaseSettings,
   saveAuthCookies,
   supabaseIsConfigured,
 } = require('../services/supabase');
@@ -28,6 +29,16 @@ after(() => {
 test('each shop needs and uses its own Supabase project', () => {
   for (const key of configKeys) delete process.env[key];
   assert.equal(supabaseIsConfigured(), false);
+  assert.deepEqual(missingSupabaseSettings('digicha'), [
+    'DIGICHA_SUPABASE_URL',
+    'DIGICHA_SUPABASE_ANON_KEY',
+    'DIGICHA_SUPABASE_SERVICE_ROLE_KEY',
+  ]);
+  assert.deepEqual(missingSupabaseSettings('mochajaki'), [
+    'MOCHAJAKI_SUPABASE_URL',
+    'MOCHAJAKI_SUPABASE_ANON_KEY',
+    'MOCHAJAKI_SUPABASE_SERVICE_ROLE_KEY',
+  ]);
   process.env.DIGICHA_SUPABASE_URL = 'https://YOUR-DIGICHA-PROJECT-REF.supabase.co';
   process.env.DIGICHA_SUPABASE_ANON_KEY = 'replace_with_digicha_public_anon_or_publishable_key';
   process.env.DIGICHA_SUPABASE_SERVICE_ROLE_KEY = 'replace_with_digicha_server_only_service_role_key';
@@ -38,7 +49,13 @@ test('each shop needs and uses its own Supabase project', () => {
   process.env.DIGICHA_SUPABASE_SERVICE_ROLE_KEY = 'digicha-server-test-key';
 
   assert.equal(supabaseIsConfigured('digicha'), true);
+  assert.deepEqual(missingSupabaseSettings('digicha'), []);
   assert.equal(supabaseIsConfigured('mochajaki'), false);
+  assert.deepEqual(missingSupabaseSettings('mochajaki'), [
+    'MOCHAJAKI_SUPABASE_URL',
+    'MOCHAJAKI_SUPABASE_ANON_KEY',
+    'MOCHAJAKI_SUPABASE_SERVICE_ROLE_KEY',
+  ]);
   assert.equal(supabaseIsConfigured(), false);
   assert.throws(
     () => getSupabase('mochajaki'),
@@ -58,6 +75,8 @@ test('each shop needs and uses its own Supabase project', () => {
   assert.equal(createAuthClient('digicha').supabaseUrl, process.env.DIGICHA_SUPABASE_URL);
   assert.equal(createAuthClient('mochajaki').supabaseUrl, process.env.MOCHAJAKI_SUPABASE_URL);
   assert.equal(supabaseIsConfigured(), true);
+  assert.deepEqual(missingSupabaseSettings('digicha'), []);
+  assert.deepEqual(missingSupabaseSettings('mochajaki'), []);
 });
 
 test('shop sessions use separate cookie names', () => {

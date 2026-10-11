@@ -58,7 +58,7 @@ Requirements: Node.js 18 or newer, npm, and **two separate Supabase projects**â€
    npm start
    ```
 
-7. Open `http://localhost:3000`. Check `http://localhost:3000/api/health` for the per-shop project configuration flags. A configured flag only means the URL/keys are present; it does not prove SQL, Auth, or payment setup is complete.
+7. Open `http://localhost:3000`. Check `http://localhost:3000/api/health` for the per-shop configuration flags and `supabaseMissingSettings` variable-name lists. The health response never returns key values. A configured flag only means the URL/keys are present; it does not prove SQL, Auth, or payment setup is complete. The server loads `backend/.env` relative to `backend/server.js`, even if launched from another working directory.
 
 **Do not run `database/seed.sql` in this two-project setup.** It is retained only as a combined seed for an older single-Supabase-project installation. The per-shop seed files touch only their matching shop. If a combined seed was already applied to an existing project, back up and review its data before removing anything.
 

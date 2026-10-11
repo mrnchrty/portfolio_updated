@@ -1,6 +1,7 @@
-require('dotenv').config();
-
 const path = require('path');
+
+// Resolve backend/.env relative to this file, not the shell's current working directory.
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const helmet = require('helmet');
@@ -9,6 +10,7 @@ const shopRoutes = require('./routes/shops');
 const { stripeWebhook } = require('./controllers/paymentController');
 const { errorHandler, notFound } = require('./middleware/errors');
 const {
+  missingSupabaseSettings,
   sampleOrdersAreAllowed,
   stripeIsConfigured,
   supabaseIsConfigured,
@@ -99,6 +101,10 @@ app.get('/api/health', (request, response) => {
     supabaseProjects: {
       digicha: supabaseIsConfigured('digicha'),
       mochajaki: supabaseIsConfigured('mochajaki'),
+    },
+    supabaseMissingSettings: {
+      digicha: missingSupabaseSettings('digicha'),
+      mochajaki: missingSupabaseSettings('mochajaki'),
     },
     stripeSecretConfigured: stripeIsConfigured(),
     stripeWebhookConfigured: Boolean(process.env.STRIPE_WEBHOOK_SECRET),

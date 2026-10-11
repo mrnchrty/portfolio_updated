@@ -914,12 +914,18 @@
       updateCheckoutAvailability();
     }
 
+    function supabaseSetupSummary() {
+      const shopName = setup.shopName || shop;
+      const seedFile = shop === 'digicha' ? 'seed-digicha.sql' : 'seed-mochajaki.sql';
+      return `Connect ${shopName} to its separate Supabase project in backend/.env, then run database/schema.sql and database/${seedFile} in that project.`;
+    }
+
     function updateCheckoutNotice() {
       if (!elements.checkoutSetupNotice) return;
       let message;
       let kind = '';
       if (!sourceConnected) {
-        message = 'Preview only: local listings are visible, but accounts, ordering, and payment selection require a connected Supabase shop. No payment is collected in this preview.';
+        message = `Preview only: local sample listings are visible. ${supabaseSetupSummary()} Accounts and order submission remain unavailable until setup. No payment is collected in this preview.`;
       } else if (!checkoutConfig) {
         message = 'The catalog loaded, but checkout settings could not be loaded. Confirm the shop fulfillment and payment configuration.';
         kind = 'error';
@@ -949,7 +955,7 @@
       }
       if (elements.backendStatus) {
         elements.backendStatus.textContent = !sourceConnected
-          ? 'Preview only: accounts, order submission, and payment need a Supabase connection.'
+          ? `Preview only: local sample listings are shown. ${supabaseSetupSummary()}`
           : (shopInfo.is_demo
             ? 'Development shop connected. Test orders remain unpaid; payment methods are selection only and are not verified here.'
             : 'Connected to the shop catalog. Product availability and totals are confirmed again by the server at checkout.');

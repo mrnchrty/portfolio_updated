@@ -189,12 +189,18 @@ function sampleOrdersAreAllowed() {
   );
 }
 
-function supabaseIsConfigured(slug) {
+function missingSupabaseSettings(slug) {
+  const normalizedSlug = normalizeShopSlug(slug);
+  const prefix = SHOP_ENV_PREFIXES[normalizedSlug];
   const requiredSettings = ['URL', 'ANON_KEY', 'SERVICE_ROLE_KEY'];
+  return requiredSettings
+    .filter((setting) => isPlaceholder(shopEnvironment(normalizedSlug, setting)))
+    .map((setting) => `${prefix}_SUPABASE_${setting}`);
+}
+
+function supabaseIsConfigured(slug) {
   const shops = slug ? [normalizeShopSlug(slug)] : Object.keys(SHOP_ENV_PREFIXES);
-  return shops.every((shopSlug) =>
-    requiredSettings.every((setting) => !isPlaceholder(shopEnvironment(shopSlug, setting))),
-  );
+  return shops.every((shopSlug) => missingSupabaseSettings(shopSlug).length === 0);
 }
 
 module.exports = {
@@ -204,6 +210,7 @@ module.exports = {
   getRequestUser,
   getStripe,
   getSupabase,
+  missingSupabaseSettings,
   saveAuthCookies,
   sampleOrdersAreAllowed,
   stripeIsConfigured,
